@@ -5,8 +5,26 @@
 - git life cycle 적기
 - 본인의 작업이 완료되면 브랜치를 push 합니다.
 ### 2. branch
-- main: 본 서버 배포
-- develop: 개발 배포
+- **main**
+: 배포 브랜치
+- **develop**: 작업 브랜치
+
+  ㄴ**feature/intro**
+  
+  : 첫 페이지, gif 가이드
+
+  ㄴ**feature/image**
+  
+  : 사진 업로드 + 좌표값 추출 + 이미지&좌표값 전송 API
+
+  ㄴ**feature/algorithm**
+  
+  : 손 detection + 둘레값 도출
+
+  ㄴ**feature/returnSize**
+  
+  : 둘레값 전송 API + 결과 페이지
+
 
 ### 3. commit rule
 > **타입(파일): 제목** 
