@@ -23,6 +23,8 @@ services:
     tty: true
     depends_on:
       - flask
+    networks: 
+      - highfive
     restart: always
 
   flask:
@@ -38,6 +40,8 @@ services:
     environment: 
       - FLASK_APP=app
       - FLASK_ENV=development
+    networks: 
+      - highfive
     restart: always
 
 networks: 
