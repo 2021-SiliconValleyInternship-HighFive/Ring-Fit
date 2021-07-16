@@ -1,0 +1,66 @@
+version: "3.0"
+
+services:
+  react: 
+    build:
+      context: ./react
+      dockerfile: Dockerfile.prod
+    image: react:prod
+    container_name: react
+    volumes: 
+      - ./react:/react
+      # - ./react/node_modules/:/react/node_modules 
+      - build_folder:/react/build
+      # - '/app/node_modules'
+    stdin_open: true
+    tty: true
+    depends_on: 
+      - flask 
+    networks:
+      - highfive
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile.prod
+    image: nginx:prod
+    container_name: nginx
+    ports:
+      - 80:80
+    depends_on:
+      - flask
+      - react
+    volumes: 
+      - build_folder:/var/www/frontend
+    networks:
+      - highfive
+    restart: always
+
+  flask:
+    build:
+      context: ./flask
+      dockerfile: Dockerfile.prod
+    image: flask:prod
+    container_name: flask
+    ports:
+      - 5000:5000
+    volumes:
+      - ./flask:/flask
+    environment: 
+      - FLASK_APP=app
+      - FLASK_ENV=production
+    # Dockerfile.prod에 CMD로 넣어줬습니다.
+    # command: gunicorn -w 1 --bind 0.0.0.0:5000 app:app --reload
+    
+    # wsgi.py를 추가한 경우
+    # command: gunicorn -w 1 --bind 0.0.0.0:5000 wsgi:app
+    networks:
+      - highfive
+    restart: always
+
+volumes: 
+  build_folder:
+
+networks: 
+  highfive:
+    driver: bridge

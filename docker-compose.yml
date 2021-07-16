@@ -1,0 +1,45 @@
+version: "3.0"
+
+services:
+  react: 
+    build:
+      context: ./react
+      dockerfile: Dockerfile.dev
+    image: react:dev
+    container_name: react
+    volumes: 
+      - ./react:/react
+      - ./react/node_modules/:/react/node_modules 
+      # - '/app/node_modules' 
+    ports: 
+      - 3000:3000 
+    environment: 
+      - NODE_ENV=development
+      # CHOKIDAR_USEPOLLING=ture은 App이 수정되었을 경우 Reload이 가능하도록 하는 설정
+      - CHOKIDAR_USEPOLLING=true
+    # Dockerfile.dev에 CMD로 넣어줬습니다.
+    # command: npm start
+    stdin_open: true
+    tty: true
+    depends_on:
+      - flask
+    restart: always
+
+  flask:
+    build:
+      context: ./flask
+      dockerfile: Dockerfile.dev
+    image: flask:dev
+    container_name: flask
+    ports:
+      - 5000:5000
+    volumes:
+      - ./flask:/flask
+    environment: 
+      - FLASK_APP=app
+      - FLASK_ENV=development
+    restart: always
+
+networks: 
+  highfive:
+    driver: bridge
