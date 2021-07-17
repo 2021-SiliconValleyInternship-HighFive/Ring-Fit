@@ -39,7 +39,7 @@ cnts = [x for x in cnts if cv2.contourArea(x) > 100]
 #cv2.drawContours(image, cnts, -1, (0,255,0), 3)
 
 # 참조 객체 치수
-# 참고로 저는 2cm x 2cm 정사각형을 사용했습니다.
+# 2.2 x 2.2 (cm) 100원 동전 사용.
 ref_object = cnts[0]
 box = cv2.minAreaRect(ref_object)
 box = cv2.boxPoints(box)
@@ -47,7 +47,7 @@ box = np.array(box, dtype="int")
 box = perspective.order_points(box)
 (tl, tr, br, bl) = box
 dist_in_pixel = euclidean(tl, tr)
-dist_in_cm = 2
+dist_in_cm = 2.2
 pixel_per_cm = dist_in_pixel/dist_in_cm
 
 # 나머지 윤곽 그리기
