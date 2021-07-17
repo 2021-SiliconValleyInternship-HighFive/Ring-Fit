@@ -7,6 +7,8 @@ Original file is located at
     https://colab.research.google.com/drive/1GU4Ky8VxZJ6nQYXy2mlR6Kia3Ty2hwxo
 """
 
+#test 하기
+
 #setting all import things
 import pandas as pd
 import os
