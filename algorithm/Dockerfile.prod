@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 # mkdir flask && cd flask
 # container 내부 작업 공간 생성 후 이동
-WORKDIR /flask
+WORKDIR /algorithm
 
 RUN apt-get update -y && \
     apt-get install -y python3 python3-pip python3-dev \
