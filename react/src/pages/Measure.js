@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 function Measure() {
   const location = useLocation();
   const imgUrl = location.state.imgUrl;
+
+  const [coord, setCoord] = useState({ x: 0, y: 0 });
+
+  const onClick = (e) => {
+    setCoord({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
+  }
 
   /* 이미지 크기 확인용 임시 스타일 */
   const imgStyle = {
@@ -13,7 +19,11 @@ function Measure() {
 
   return (
     <div>
-      <img src={imgUrl} style={imgStyle} />
+      <h1>
+        x: {coord.x} y: {coord.y}
+      </h1>
+
+      <img src={imgUrl} onClick={onClick} style={imgStyle} />
 
       <footer>
         <Link to="/upload">취소</Link>

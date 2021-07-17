@@ -30,6 +30,7 @@ function Upload() {
       );
     });
 
+    /* 업로드된 이미지로 이미지 변경 */
   const onChange = async (event) => {
     try {
       const file = event.target.files[0];
