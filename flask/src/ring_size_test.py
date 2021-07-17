@@ -72,3 +72,12 @@ show_images([image])
 
 # 손가락 둘레 측정하기
 finger_round=int(wid*3.14)
+
+# 반지 호수
+a=[]
+
+for size in range(44,74):
+    a.append(size)
+
+ring_size=a.index(finger_round)+1
+
