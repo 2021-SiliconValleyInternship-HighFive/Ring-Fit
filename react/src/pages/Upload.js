@@ -24,17 +24,19 @@ function Upload() {
         0, // min height
         (uri) => {
           resolve(uri);
-          setSource(uri);
         },
         "base64" // 저장 형식
       );
     });
 
-    /* 업로드된 이미지로 이미지 변경 */
+  /* 업로드된 이미지로 이미지 변경 */
   const onChange = async (event) => {
     try {
       const file = event.target.files[0];
-      const image = await resizeFile(file);
+      const image = await resizeFile(file); // resize image to 513 * 513
+      setSource(image); // update image preview
+      console.log(image);
+      console.log(image instanceof File);
     } catch (err) {
       console.log(err);
     }
@@ -61,7 +63,7 @@ function Upload() {
         to={{
           pathname: "/measure",
           state: {
-            imgUrl: source, /* Measure.js에 이미지 src 전달 */
+            imgUrl: source /* Measure.js에 이미지 src 전달 */,
           },
         }}
       >
