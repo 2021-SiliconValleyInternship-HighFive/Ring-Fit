@@ -6,7 +6,7 @@ services:
     ports:
       - "5000:5000"
     volumes:
-      - .:/flask
+      - .:/algorithm
     environment: 
       - FLASK_APP=app
       - FLASK_ENV=development
