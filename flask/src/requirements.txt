@@ -5,4 +5,5 @@ PIL
 opencv-python
 tensorflow 
 matplotlib
-asdf
+imutils
+scipy
