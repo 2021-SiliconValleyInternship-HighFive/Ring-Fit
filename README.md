@@ -15,7 +15,7 @@
 
   ㄴ**feature/image**
   
-  : 사진 업로드 + 좌표값 추출 + 이미지&좌표값 전송 API
+  : 사진 업로드 + 좌표값 추출 + 좌표값&이미지 파일 API
 
   ㄴ**feature/algorithm**
   
@@ -23,7 +23,7 @@
 
   ㄴ**feature/returnSize**
   
-  : 둘레값 전송 API + 결과 페이지
+  : 결과값 API + 결과 페이지
 
 
 ### 3. commit rule
