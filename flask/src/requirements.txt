@@ -6,4 +6,3 @@ opencv-python
 tensorflow 
 matplotlib
 scipy
-imutils
