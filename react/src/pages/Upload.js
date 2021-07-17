@@ -9,8 +9,8 @@ function Upload() {
   /* 이미지 크기 확인용 임시 스타일 */
   const imgStyle = {
     width: "80%",
-    height: "80%"
-  }
+    height: "80%",
+  };
 
   /*resize image 513 * 513 크기로 base64형식 이미지 리턴*/
   const resizeFile = (file) =>
@@ -50,13 +50,20 @@ function Upload() {
       />
 
       <label htmlFor="upload-file">
-        <img className="uploadImage" src={source} style={ imgStyle }/>
+        <img className="uploadImage" src={source} style={imgStyle} />
       </label>
 
       <br></br>
 
       {/*route link*/}
-      <Link to="/measure">
+      <Link
+        to={{
+          pathname: "/measure",
+          state: {
+            imgUrl: source, /* Measure.js에 이미지 src 전달 */
+          },
+        }}
+      >
         <button>select</button>
       </Link>
     </div>
