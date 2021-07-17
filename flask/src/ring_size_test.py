@@ -68,3 +68,7 @@ for cnt in cnts:
 		cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
 
 show_images([image])
+
+
+# 손가락 둘레 측정하기
+finger_round=int(wid*3.14)
