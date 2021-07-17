@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+Ubuntu 20.04 서버에 사용 가능한 latest package로 기본 시스템을 update
+```bash
+apt -y update
+```
+React App은 JavaScript 라이브러리이므로 Node.js가 서버에 설치되어 있어야 합니다. 기본적으로 최신 버전의 Node.js는 Ubuntu 표준 리포지토리에서 사용할 수 없으므로 NodeSource에서 설치
+```bash
+apt install -y curl gnupg2
+```
+Node.js repository를 추가합니다.
+```bash
+apt install -y nodejs
+```
+NPM을 latest version으로 update 합니다.
+```bash
+npm install npm@latest -g
+```
+Nodejs의 버전을 확인합니다.
+```bash
+node -v
+```
+작성 기준 아래와 같이 버전 확인이 가능합니다.
+```bash
+v14.17.2
+```
+React에서 새 프로젝트를 생성하려면 create-react-app 도구를 설치해야 합니다.
+```bash
+npm install -g create-react-app
+```
+create-react-app을 통해서 새로운 프로젝트를 생성합니다.
+```bash
+create-react-app new_project
+```
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Dockerfile을 이용하여 react 개발환경 이미지 생성
 
-## Available Scripts
+current directory에서 default로 Dockerfile을 먼저 찾습니다.
+```bash
+docker build -t react:dev .
+```
+위에서 생성한 이미지로 컨테이너를 생성합니다.
+```
+docker run -it --rm --name react -p 3000:3000 -v current directory path:/react react:dev
+```
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+create-react-app을 통해서 react 개발환경을 생성합니다.
+```bash
+create-react-app front_end template cra-template-pwa
+```
+---

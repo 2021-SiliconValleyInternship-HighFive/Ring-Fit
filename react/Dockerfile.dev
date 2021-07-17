@@ -1,27 +1,23 @@
 # docker container base image
 FROM ubuntu:20.04
 
-# Geographic area: 선택문이 안나오게 해줍니다.
-ARG DEBIAN_FRONTEND=noninteractive
-
-# Set working directory
 WORKDIR /react
+
+RUN apt -y update && \
+  apt install -y curl gnupg2 && \
+  curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
+  apt install -y nodejs && \
+  npm install -g npm@latest create-react-app
 
 # Add /react/node_modules/.bin to environment variables
 ENV PATH /react/node_modules/.bin:$PATH
-
-# apt -y upgrade
-RUN apt -y update && \
-  apt install -y curl gnupg2 npm build-essential libssl-dev && \
-  npm install -g create-react-app axios
 
 COPY package*.json .
 
 # package*.json 파일을 설치
 RUN npm install
-# RUN npm install react-scripts -g
 
 # Expose ports
 EXPOSE 3000
 
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]
