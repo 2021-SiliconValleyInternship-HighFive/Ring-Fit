@@ -7,6 +7,7 @@ function Measure() {
 
   const [coord, setCoord] = useState({ x: 0, y: 0 });
 
+  /* 이미지 좌표 추출 */
   const onClick = (e) => {
     setCoord({ x: e.nativeEvent.offsetX, y: e.nativeEvent.offsetY });
   }
@@ -19,9 +20,7 @@ function Measure() {
 
   return (
     <div>
-      <h1>
-        x: {coord.x} y: {coord.y}
-      </h1>
+      <h1>x: {coord.x} y: {coord.y}</h1> {/* (좌표 확인용) temp*/}
 
       <img src={imgUrl} onClick={onClick} style={imgStyle} />
 
