@@ -6,20 +6,21 @@ from pydantic import BaseModel
 # from fastapi.responses import HTMLResponse
 
 
-# # Backend 
-# origins = [
-#     "http://localhost:8000",
-# ]
+# Add CORS URLs 
+# React default port: 3000
+origins = [
+    "http://localhost:3000",
+]
 
 
-# # CORSMiddleware
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins=origins,
-#     allow_credentials=True,
-#     allow_methods=["*"],
-#     allow_headers=["*"],
-# )
+# Add CORSMiddleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = origins,
+    allow_credentials = True,
+    allow_methods = ["*"],
+    allow_headers = ["*"],
+)
 
 
 '''
@@ -48,9 +49,9 @@ app = FastAPI()
 #     return {"filename" : file.filename}  
 
 
-# 좌표 & 이미지 파일 API
+# 데이터 전송 API
 # content-type: multipart/form-data
-@app.post('/api/data')
+@app.post('/api/data', status_code=201)
 async def send_data(
     x: int = Form(...), y: int = Form(...), file: UploadFile = File(...)
 ):
@@ -61,8 +62,8 @@ async def send_data(
     }
 
 
-# 결과값 API
+# 결괏값 반환 API
 # content-type: application/json
-@app.post('/api/result')
+@app.post('/api/result', status_code=201)
 async def get_result(result: Size):
     return result
