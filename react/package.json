@@ -8,6 +8,11 @@
     "@testing-library/user-event": "^12.8.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+<<<<<<< HEAD
+=======
+    "react-image-file": "^0.3.0",
+    "react-image-file-resizer": "^0.4.7",
+>>>>>>> feature/image
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
     "react-slick": "^0.28.1",
