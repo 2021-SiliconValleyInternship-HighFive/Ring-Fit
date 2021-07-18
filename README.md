@@ -2,8 +2,17 @@
 
 ## **Git convention**
 ### 1. process
-- git life cycle 적기
-- 본인의 작업이 완료되면 브랜치를 push 합니다.
+- `git clone git@github.com:2021-SiliconValleyInternship-HighFive/Ring-Fit.git`
+- git checkout [가져올 브랜치 이름]
+
+  ex) git checkout feature/algorithm
+
+  origin을 빼고 입력합니다.
+- git add [추가할 파일명] 
+- git commit -m “commit message”
+- git push origin [브랜치이름]
+  
+  본인의 작업이 완료되면 push 합니다.
 ### 2. branch
 - **main**
 : 배포 브랜치
