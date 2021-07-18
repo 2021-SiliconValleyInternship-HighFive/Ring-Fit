@@ -28,10 +28,10 @@
 **Response**:
 
 ```
-"status code" : "201"
+"status code" : 201
 "description": "Successful response"
 
-"status code" : "422"
+"status code" : 422
 "description": "Validation error"
 
 ```

@@ -9,7 +9,6 @@ from pydantic import BaseModel
 app = FastAPI()
 
 # Add CORS URLs 
-# React default port: 3000
 origins = [
     "http://localhost:3000",
 ]
@@ -33,7 +32,7 @@ APIs
 #     y: int
 
 class Size(BaseModel):
-    perimeter: int
+    cirumference: int
     size: int
 
 
@@ -69,7 +68,3 @@ async def send_data(
 async def get_result(result: Size):
     return result
 
-
-# @app.get("/items/{item_id}")
-# async def read_item(item_id):
-#     return {"item_id": item_id}
