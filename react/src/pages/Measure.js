@@ -13,9 +13,9 @@ function Measure() {
     const bcr = document.getElementById("image").getBoundingClientRect();
     const x = e.targetTouches[0].pageX - bcr.x;
     const y = e.targetTouches[0].pageY - bcr.y;
-    console.log(e.targetTouches[0].pageX,  "bcr: ", bcr.x);
+    console.log(e.targetTouches[0].pageX, "bcr: ", bcr.x);
     setCoord({ x: x, y: y });
-    if(y>0) {
+    if (y > 0) {
       console.log("y>0");
     }
     setPosition({
@@ -43,14 +43,16 @@ function Measure() {
       <h1>
         coord x: {coord.x} y: {coord.y}
       </h1>{" "}
-      <div
-        onTouchStart={touchHandler}
-        onTouchMove={touchHandler}
-      >
-      <img  src="https://placeimg.com/50/20/any" style={dragStyle} />
+      <div>
+        <img id="image" src={imgUrl} style={imgStyle} />
+        {/* drag object (임시 이미지, 임시 크기) */}
+        <img
+          src="https://placeimg.com/50/20/any"
+          style={dragStyle}
+          onTouchStart={touchHandler}
+          onTouchMove={touchHandler}
+        />
       </div>
-      <img id="image" src={imgUrl} style={imgStyle} />
-
       <footer>
         <Link to="/upload">취소</Link>
         <Link to="/result">확인</Link>
