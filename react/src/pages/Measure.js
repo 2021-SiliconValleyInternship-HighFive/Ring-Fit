@@ -5,10 +5,10 @@ function Measure() {
   const location = useLocation();
   const imgUrl = location.state.imgUrl;
 
-  const [coord, setCoord] = useState({ x: 0, y: 0 });
-  const [position, setPosition] = useState({ left: "50%", top: "50%" });
+  const [coord, setCoord] = useState({ x: 0, y: 0 }); /* coordinate of finger Image */
+  const [position, setPosition] = useState({ left: "50%", top: "50%" }); /* position of drag */
 
-  /* 이미지 좌표 추출 */
+  /* get coord of image & set drag position */
   const touchHandler = (e) => {
     const bcr = document.getElementById("image").getBoundingClientRect();
     const x = e.targetTouches[0].pageX - bcr.x;
