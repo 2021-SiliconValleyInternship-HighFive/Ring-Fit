@@ -24,13 +24,6 @@ function Measure() {
     });
   };
 
-  /* offsetX,Y  확인용 테스트 함수 */
-  const onClick = (e) => {
-    const x = e.nativeEvent.offsetX;
-    const y = e.nativeEvent.offsetY;
-    console.log("offsetX: ", x, " offsetY: ", y);
-  };
-
   /* 이미지 크기 확인용 임시 스타일 */
   const imgStyle = {
     width: "90%",
@@ -51,7 +44,6 @@ function Measure() {
         coord x: {coord.x} y: {coord.y}
       </h1>{" "}
       <div
-        onClick={onClick}
         onTouchStart={touchHandler}
         onTouchMove={touchHandler}
       >
