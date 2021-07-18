@@ -22,10 +22,10 @@ function Home() {
             
             <Card.Body>
                 <Card.Title
-                style={{fontSize: '3rem', marginTop: '15rem',paddingLeft: '89px'}}>Ring-Fit</Card.Title>
+                style={{fontSize: '3rem', marginTop: '15rem',textAlign:'center',fontFamily: 'cookie'}}>💍Ring-Fit💍</Card.Title>
                 <Card.Text>
                 <Link to ='/guide'><Button variant="outline-info"
-                style={{ color: 'white', borderColor: 'rgb(13, 202, 240)',borderTopWidth: '298px',paddingRight: '100px',paddingLeft: '100px',borderLeftWidth: '38px',borderRightWidth: '34px',borderBottomWidth: '137px'}}>시작하기!</Button>{' '}</Link>
+                style={{ color: 'white', borderColor: 'rgb(13, 202, 240)',borderTopWidth: '298px',paddingRight: '100px',paddingLeft: '100px',borderLeftWidth: '38px',borderRightWidth: '34px',borderBottomWidth: '137px',fontFamily: 'cookie',textAlign:'center'}}>시작하기!</Button>{' '}</Link>
                 </Card.Text>
             </Card.Body>
             </Card>
