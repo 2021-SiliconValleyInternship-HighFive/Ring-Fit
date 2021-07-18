@@ -5,6 +5,8 @@ from pydantic import BaseModel
 # from fastapi.testclient import TestClient
 # from fastapi.responses import HTMLResponse
 
+#
+app = FastAPI()
 
 # Add CORS URLs 
 # React default port: 3000
@@ -34,7 +36,6 @@ class Size(BaseModel):
     perimeter: int
     size: int
 
-app = FastAPI()
 
 # # x, y값 API
 # # content-type: application/json
@@ -67,3 +68,8 @@ async def send_data(
 @app.post('/api/result', status_code=201)
 async def get_result(result: Size):
     return result
+
+
+# @app.get("/items/{item_id}")
+# async def read_item(item_id):
+#     return {"item_id": item_id}

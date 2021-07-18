@@ -1,6 +1,5 @@
 ## 결괏값 반환 API
 
-### | Parameters
 
 - 손가락 둘레(int)
 - 반지 호수(int)  
@@ -25,10 +24,10 @@
 **Response**:
 
 ```
-Status Code : 201
-Description: Successful response
+"status code" : "201"
+"description": "Successful response"
 
-Status Code : 422
-Description: Validation error
+"status code" : "422"
+"description": "Validation error"
 
 ```

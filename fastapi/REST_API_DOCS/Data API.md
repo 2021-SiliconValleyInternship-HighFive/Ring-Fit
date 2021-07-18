@@ -1,9 +1,8 @@
 ## 데이터 전송 API
 
-### | Parameters
 
-- x좌표(int)
-- y좌표(int) 
+- x 좌표(int)
+- y 좌표(int) 
 - resized 이미지 파일(jpg)
 
 <br>
@@ -14,12 +13,14 @@
 
 **Content-type** : `multipart/form-data`
 
+**Authentication** : X
+
 **Request Body** : 
 
 ```
 {
-    "x" : x좌표,
-    "y" : y좌표,
+    "x" : x 좌표,
+    "y" : y 좌표,
     "file" : resized 이미지 파일
 }
 ```
@@ -27,10 +28,10 @@
 **Response**:
 
 ```
-Status Code : 201
-Description: Successful response
+"status code" : "201"
+"description": "Successful response"
 
-Status Code : 422
-Description: Validation error
+"status code" : "422"
+"description": "Validation error"
 
 ```
