@@ -6,18 +6,14 @@ function Measure() {
   const imgUrl = location.state.imgUrl;
 
   const [coord, setCoord] = useState({ x: 0, y: 0 });
-  const [position, setPosition] = useState({ left: 100, top: 100 });
+  const [position, setPosition] = useState({ left: "50%", top: "50%" });
 
   /* 이미지 좌표 추출 */
   const touchHandler = (e) => {
     const bcr = document.getElementById("image").getBoundingClientRect();
     const x = e.targetTouches[0].pageX - bcr.x;
     const y = e.targetTouches[0].pageY - bcr.y;
-    console.log(e.targetTouches[0].pageX, "bcr: ", bcr.x);
     setCoord({ x: x, y: y });
-    if (y > 0) {
-      console.log("y>0");
-    }
     setPosition({
       left: e.targetTouches[0].pageX - 25,
       top: e.targetTouches[0].pageY - 10,
@@ -40,9 +36,7 @@ function Measure() {
   return (
     <div>
       {/* 좌표 확인 test용*/}
-      <h1>
-        coord x: {coord.x} y: {coord.y}
-      </h1>{" "}
+      <h2>coord x: {coord.x} y: {coord.y}</h2>
       <div>
         <img id="image" src={imgUrl} style={imgStyle} />
         {/* drag object (임시 이미지, 임시 크기) */}
