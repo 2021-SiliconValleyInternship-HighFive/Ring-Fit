@@ -9,8 +9,10 @@ from pydantic import BaseModel
 app = FastAPI()
 
 # Add CORS URLs 
+# Default Port: React - 3000, Flask - 5000
 origins = [
     "http://localhost:3000",
+    "http://localhost:5000"
 ]
 
 
