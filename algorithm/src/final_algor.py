@@ -343,7 +343,7 @@ hand_arr=vis_segmentation(im, seg_map)
 # ex_arr[5][6]=1
 # ex_arr[5][7]=1
 
-#4. 경로지정 : front에서 받은 위치 값 (x, y 값 경로)
+#4. 경로처리 : frontend에서 받은 위치 값 (x, y 값 경로)
 #행렬이 0에서 시작하므로 이것 주의하기!!!
 front_x=229 #행렬의 행(가로)
 front_y=232 #행렬의 열(세로)
@@ -455,7 +455,11 @@ for size in range(44,74):
     a.append(size)
 
 ring_size=a.index(finger_round)+1
+
+
+#5. 경로처리: backend로 전송할 두 값 ring_size/finger_round
 print("ring size")
 print(ring_size)
 print("finger round")
 print(finger_round)
+
