@@ -9,7 +9,7 @@ from pydantic import BaseModel
 app = FastAPI()
 
 # Add CORS URLs 
-# Default Port: React - 3000, Flask - 5000
+# Default Port - React : 3000, Flask : 5000
 origins = [
     "http://localhost:3000",
     "http://localhost:5000"
@@ -55,7 +55,9 @@ class Size(BaseModel):
 # content-type: multipart/form-data
 @app.post('/api/data', status_code=201)
 async def send_data(
+
     x: int = Form(...), y: int = Form(...), file: UploadFile = File(...)
+
 ):
     return {
         "x": x,
