@@ -7,8 +7,6 @@ Original file is located at
     https://colab.research.google.com/drive/1GU4Ky8VxZJ6nQYXy2mlR6Kia3Ty2hwxo
 """
 
-#test 하기
-
 #setting all import things
 import pandas as pd
 import os
@@ -19,8 +17,15 @@ import cv2
 import tensorflow as tf
 from matplotlib import gridspec
 from matplotlib import pyplot as plt
+from scipy.spatial.distance import euclidean
+from imutils import perspective
+from imutils import contours
+import imutils
 
-tflite_path="/content/drive/MyDrive/summerproject2021/deeplab_pretrained/export/frozen_inference_graph.tflite"
+
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+
+tflite_path="frozen_inference_graph.tflite"
 
 # Load the model.
 interpreter = tf.lite.Interpreter(model_path=tflite_path)
@@ -33,7 +38,7 @@ interpreter.allocate_tensors()
 input_size = input_details[0]['shape'][2], input_details[0]['shape'][1]
 print(input_size)
 
-testimg_dir='/content/drive/MyDrive/summerproject2021/test_dataset/hand_4.jpg'
+testimg_dir='coin_hand.JPG'
 
 im = Image.open(testimg_dir)
 im = im.resize((513, 513))
@@ -69,7 +74,7 @@ seg_map = tf.squeeze(seg_map).numpy().astype(np.int8)
 
 # !wget https://raw.githubusercontent.com/CSAILVision/sceneparsing/master/objectInfo150.csv
 
-label_all = '/content/objectInfo150.csv'
+label_all = 'objectInfo150.csv'
 ade20k_labels_info = pd.read_csv(label_all)
 labels_list = list(ade20k_labels_info['Name'])
 ade20k_labels_info.head()
@@ -286,11 +291,17 @@ def vis_segmentation(image, seg_map):
   plt.title('segmentation overlay')
 
   unique_labels = np.unique(seg_map)
-
+  #필요한 모델 output
   x=np.array(seg_map)
-  # np.save('/content/drive/MyDrive/summerproject2021/deeplab_pretrained/export/save_map', x) # x_save.npy
-  # np.savetxt("/content/drive/MyDrive/summerproject2021/deeplab_pretrained/export/save.txt", x, fmt='%d', delimiter=',')
-  print(unique_labels)
+  #np.save('save_map', x) # x_save.npy
+  np.savetxt("new_save.txt", x, fmt='%d', delimiter=',')
+  print("new detection end")
+
+ 
+  
+
+
+  # print(unique_labels)
   ax = plt.subplot(grid_spec[3])
   plt.imshow(
       FULL_COLOR_MAP[unique_labels].astype(np.uint8), interpolation='nearest')
@@ -300,11 +311,150 @@ def vis_segmentation(image, seg_map):
   ax.tick_params(width=0.0)
   plt.grid('off')
   plt.show()
+  return x
 
 
 LABEL_NAMES = np.asarray(labels_list)
 
 FULL_LABEL_MAP = np.arange(len(LABEL_NAMES)).reshape(len(LABEL_NAMES), 1)
 FULL_COLOR_MAP = label_to_color_image(FULL_LABEL_MAP)
+ 
 
-vis_segmentation(im, seg_map)
+
+
+#vis_segmentation(im, seg_map)
+
+hand_arr=vis_segmentation(im, seg_map)
+
+
+#딥러닝 모델 결과 513*513 배열 x로부터 / tl(left)/ tr(right) 검출하는 알고리즘 코드
+#front로부터 받은 index위치 값을 중심으로 행값을 줄이고,늘리며 index의 값이 0이 되기전 index위치값 두점을 받아온다.
+
+#예시 행렬
+# ex_arr=np.zeros((10, 10))
+
+# ex_arr[5][3]=1
+# ex_arr[5][4]=1
+# ex_arr[5][5]=1
+# ex_arr[5][6]=1
+# ex_arr[5][7]=1
+
+#front에서 받은 위치 값 g
+#행렬이 0에서 시작하므로 이것 주의하기!!!
+
+
+front_x=229 #행렬의 행(가로)
+front_y=232 #행렬의 열(세로)
+len_max=513 #손가락 최대 넓이 지정
+
+# front_x=5 #행렬의 행(가로)
+# front_y=5#행렬의 열(세로)
+# len_max=5
+left_arr=[0,0]
+right_arr=[0,0]
+
+
+#left_arr,right_arr(왼/오 양방향으로 손 검출이 끝나는 부분을 구하는 코드)
+
+for i in range(0,front_y):
+    print(front_y-i)
+    print(hand_arr[front_x][front_y-i])
+    if hand_arr[front_x][front_y-i]==0:
+        left_arr[0]=front_x
+        left_arr[1]=front_y-i+1
+        break
+
+for j in range(front_y,len_max):
+    print(j)
+    print(hand_arr[front_x][j])
+    if hand_arr[front_x][j]==0:
+        right_arr[0]=front_x
+        right_arr[1]=j-1
+        break
+
+print("new 손가락 양 끝값")
+print(left_arr)
+print(right_arr)
+print("손가락 길이 측정 결과")
+print(right_arr[1]-left_arr[1]+1)
+
+# 이미지 배열을 보여주는 함수(중간 결과)
+# def show_images(images):
+# 	for i, img in enumerate(images):
+# 		cv2.imshow("image_" + str(i), img)
+# 	cv2.waitKey(0)
+# 	cv2.destroyAllWindows()
+
+
+
+
+img_path = testimg_dir
+
+# 이미지 읽기 및 전처리
+image = cv2.imread(img_path)
+image=cv2.resize(513,513)
+
+gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+blur = cv2.GaussianBlur(gray, (9, 9), 0)
+
+edged = cv2.Canny(blur, 50, 100)
+edged = cv2.dilate(edged, None, iterations=1)
+edged = cv2.erode(edged, None, iterations=1)
+
+#show_images([blur, edged])
+
+# 등고선 찾기
+cnts = cv2.findContours(edged.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+cnts = imutils.grab_contours(cnts)
+
+# 가장 왼쪽의 윤곽선이 참조 객체이므로 윤곽선을 왼쪽에서 오른쪽으로 정렬합니다.
+(cnts, _) = contours.sort_contours(cnts)
+
+# 충분히 크지 않은 윤곽선 제거
+cnts = [x for x in cnts if cv2.contourArea(x) > 100]
+
+#cv2.drawContours(image, cnts, -1, (0,255,0), 3)
+
+# 참조 객체 치수
+# 2.2 x 2.2 (cm) 100원 동전 사용.
+ref_object = cnts[0]
+box = cv2.minAreaRect(ref_object)
+box = cv2.boxPoints(box)
+box = np.array(box, dtype="int")
+box = perspective.order_points(box)
+(tl, tr, br, bl) = box
+dist_in_pixel = euclidean(tl, tr)
+dist_in_mm = 22
+pixel_per_mm = dist_in_pixel/dist_in_mm
+
+# 나머지 윤곽 그리기
+for cnt in cnts:
+	box = cv2.minAreaRect(cnt)
+	box = cv2.boxPoints(box)
+	box = np.array(box, dtype="int")
+	box = perspective.order_points(box)
+	(tl, tr, br, bl) = box
+	cv2.drawContours(image, [box.astype("int")], -1, (0, 0, 255), 2)
+	mid_pt_horizontal = (tl[0] + int(abs(tr[0] - tl[0])/2), tl[1] + int(abs(tr[1] - tl[1])/2))
+	mid_pt_verticle = (tr[0] + int(abs(tr[0] - br[0])/2), tr[1] + int(abs(tr[1] - br[1])/2))
+	wid = euclidean(tl, tr)/pixel_per_mm
+	ht = euclidean(tr, br)/pixel_per_mm
+	cv2.putText(image, "{:.1f}mm".format(wid), (int(mid_pt_horizontal[0] - 15), int(mid_pt_horizontal[1] - 10)), 
+		cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
+	cv2.putText(image, "{:.1f}mm".format(ht), (int(mid_pt_verticle[0] + 10), int(mid_pt_verticle[1])), 
+		cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
+
+# show_images([image])
+
+
+# 손가락 둘레 측정하기
+finger_round=int(wid*3.14)
+
+# 반지 호수
+a=[]
+
+for size in range(44,74):
+    a.append(size)
+
+ring_size=a.index(finger_round)+1
+
