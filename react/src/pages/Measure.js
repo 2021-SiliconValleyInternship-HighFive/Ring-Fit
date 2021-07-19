@@ -4,7 +4,8 @@ import Draggable from "react-draggable";
 
 function Measure() {
   const location = useLocation();
-  const imgUrl = location.state.imgUrl;
+  const image = location.state.image;
+  const imgUrl = URL.createObjectURL(image);
   const size = String(window.innerWidth * 0.9) + "px";
   const [coord, setCoord] = useState({
     x: 0,
