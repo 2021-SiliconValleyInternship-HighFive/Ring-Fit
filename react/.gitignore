@@ -23,4 +23,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # local에서 npm install 과정에서 생성
-#yarn.lock
+yarn.lock
