@@ -1,12 +1,19 @@
 import React, { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import Draggable from "react-draggable";
 
 function Measure() {
   const location = useLocation();
   const imgUrl = location.state.imgUrl;
-
-  const [coord, setCoord] = useState({ x: 0, y: 0 }); /* coordinate of finger Image */
-  const [position, setPosition] = useState({ left: "50%", top: "50%" }); /* position of drag */
+  const size = String(window.innerWidth * 0.9) + "px";
+  const [coord, setCoord] = useState({
+    x: 0,
+    y: 0,
+  }); /* coordinate of finger Image */
+  const [position, setPosition] = useState({
+    left: "50%",
+    top: "50%",
+  }); /* position of drag */
 
   /* get coord of image & set drag position */
   const touchHandler = (e) => {
@@ -21,10 +28,16 @@ function Measure() {
   };
 
   /* 이미지 크기 확인용 임시 스타일 */
+  const boxStyle = {
+    width: size,
+    height: size,
+    position: "relative",
+    backgroundImage: `url(${imgUrl})`  
+  };
+
   const imgStyle = {
-    width: "90%",
-    height: "90%",
-    cursor: "pointer",
+    width: size,
+    height: size
   };
 
   const dragStyle = {
@@ -35,10 +48,25 @@ function Measure() {
 
   return (
     <div>
+      {console.log({ size })}
       {/* 좌표 확인 test용*/}
-      <h2>coord x: {coord.x} y: {coord.y}</h2>
+      <h2>
+        coord x: {coord.x} y: {coord.y}
+      </h2>
+      <div style={boxStyle}>
+      <Draggable bounds="parent" style={{position:"absolute"}}>
+          <img src="https://placeimg.com/10/10/any" />
+        </Draggable>
+        
+      </div>
+
+      <img id="image" src={imgUrl} style={imgStyle} />
+
       <div>
-        <img id="image" src={imgUrl} style={imgStyle} />
+        <div style={imgStyle}></div>
+      </div>
+
+      <div>
         {/* drag object (임시 이미지, 임시 크기) */}
         <img
           src="https://placeimg.com/50/20/any"
