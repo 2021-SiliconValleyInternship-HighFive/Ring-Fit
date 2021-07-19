@@ -4,13 +4,13 @@ import Resizer from "react-image-file-resizer";
 import tempPreview from "../images/tempPreview.png";
 
 function Upload() {
-  const [image, setImage] = useState(tempPreview);
+  const [image, setImage] = useState();
+  const [preview, setPreview] = useState(tempPreview);
 
   /* 이미지 크기 확인용 임시 스타일 */
   const imgStyle = {
     width: "80%",
     height: "80%",
-    marginLeft: "36px"
   };
 
   /* resize image func: 513 * 513 크기로 base64형식 이미지 리턴 */
@@ -26,17 +26,16 @@ function Upload() {
         (uri) => {
           resolve(uri);
         },
-        "base64" // 저장 형식
+        "file" // 저장 형식
       );
     });
 
   const onChange = async (event) => {
     try {
       const file = event.target.files[0];
-      const base64Img = await resizeFile(file); // resize image
-      setImage(base64Img); // update image preview
-      console.log(image); // test용
-      console.log(image instanceof File); // teset용
+      const img = await resizeFile(file); // resize image
+      setImage(img); // update image
+      setPreview(URL.createObjectURL(img));
     } catch (err) {
       console.log(err);
     }
@@ -47,13 +46,13 @@ function Upload() {
       <input
         type="file"
         accept="image/*"
-        id="upload-file"
+        id="upload-image"
         onChange={(e) => onChange(e)}
         style={{ display: "none" }}
       />
 
-      <label htmlFor="upload-file">
-        <img className="uploadImage" src={image} style={imgStyle} />
+      <label htmlFor="upload-image">
+        <img className="uploadImage" src={preview} style={imgStyle} />
       </label>
 
       <br></br>
@@ -63,7 +62,7 @@ function Upload() {
         to={{
           pathname: "/measure",
           state: {
-            imgUrl: image /* Measure.js에 이미지 전달 */,
+            image: image /* Measure.js에 이미지 전달 */,
           },
         }}
       >
