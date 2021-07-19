@@ -1,7 +1,8 @@
 version: "3.0"
 
 services:
-  react: 
+  # react
+  frontend: 
     build:
       context: ./react
       dockerfile: Dockerfile.dev
@@ -22,21 +23,22 @@ services:
     stdin_open: true
     tty: true
     depends_on:
-      - flask
+      - model_server
     networks: 
       - highfive
     restart: always
 
-  flask:
+  # fastapi로 변경 해야합니다.
+  model_server:
     build:
-      context: ./flask
+      context: ./backend/model_server
       dockerfile: Dockerfile.dev
-    image: flask:dev
-    container_name: flask
+    image: model_server:dev
+    container_name: model_server
     ports:
       - 5000:5000
     volumes:
-      - ./flask:/flask
+      - ./backend/model_server/:/model_server
     environment: 
       - FLASK_APP=app
       - FLASK_ENV=development
