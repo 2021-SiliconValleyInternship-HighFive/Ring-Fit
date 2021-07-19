@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Resizer from "react-image-file-resizer";
 import tempPreview from "../images/tempPreview.png";
 
 function Upload() {
-  const [image, setImage] = useState();
+  const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(tempPreview);
+  const history = useHistory();
 
   /* 이미지 크기 확인용 임시 스타일 */
   const imgStyle = {
@@ -41,6 +42,13 @@ function Upload() {
     }
   };
 
+  const onClick = () => {
+    if (image === null) return alert("no image");
+    else {
+      history.push({ pathname: "/measure", state: { image: image } });
+    }
+  };
+
   return (
     <div>
       <input
@@ -57,17 +65,7 @@ function Upload() {
 
       <br></br>
 
-      {/*route link*/}
-      <Link
-        to={{
-          pathname: "/measure",
-          state: {
-            image: image /* Measure.js에 이미지 전달 */,
-          },
-        }}
-      >
-        <button>select</button>
-      </Link>
+      <button onClick={onClick}>select</button>
     </div>
   );
 }
