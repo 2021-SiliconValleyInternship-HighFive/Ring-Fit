@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Slider from "react-slick";
+import { Button } from 'react-bootstrap';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -15,24 +16,32 @@ render() {
     initialSlide: 2
     };
     return (
-    <div>
-        <h2> slide test </h2>
+    <div> 
+    <Button 
+    variant="info"
+    style={{fontFamily: 'cookie',textAlign:'center',
+    color: 'white', fontWeight: '900',width:'100vw',padding: '1.375rem 7.75rem',backgroundColor:  'rgb(13, 202, 240)',
+    borderColor:  'rgb(13, 202, 240)'}} >RING-FIT 사용법💍</Button>{' '}
         <Slider {...settings}>
         <div>
-        <img src="https://placeimg.com/300/300/1"/>
-            <h3>test1</h3>
+        <img src = "https://placeimg.com/300/300/1"
+            style={{display: 'block', margin: '0px auto',paddingTop: '50px' ,paddingBottom: '50px'}}/>
+            <h3 style={{fontFamily: 'cookie',textAlign:'center',color:'rgb(13, 202, 240)'}}>동전과 손을 준비하세요!</h3>
         </div>
         <div>
-        <img src ="https://placeimg.com/300/300/1"/>
-            <h3>test2</h3>
+        <img src = "https://placeimg.com/300/300/2"
+            style={{display: 'block', margin: '0px auto',paddingTop: '50px' ,paddingBottom: '50px'}}/>
+            <h3 style={{fontFamily: 'cookie',textAlign:'center',color:'rgb(13, 202, 240)'}}>동전을 왼쪽에, 손을 오른쪽에 두고 사진을 찍어주세요.</h3>
         </div>
         <div>
-        <img src ="https://placeimg.com/300/300/1"/>
-            <h3>test3</h3>
+        <img src = "https://placeimg.com/300/300/3"
+            style={{display: 'block', margin: '0px auto',paddingTop: '50px' ,paddingBottom: '50px'}}/>
+            <h3 style={{fontFamily: 'cookie',textAlign:'center',color:'rgb(13, 202, 240)'}}>길이 측정을 원하는 부위에 빨간 선을 놓으세요!</h3>
         </div>
         <div>
-        <img src ="https://placeimg.com/300/300/1"/>
-            <h3>test4</h3>
+        <img src = "https://placeimg.com/300/300/4"
+            style={{display: 'block', margin: '0px auto',paddingTop: '50px' ,paddingBottom: '50px'}}/>
+            <h3 style={{fontFamily: 'cookie',textAlign:'center',color:'rgb(13, 202, 240)'}}>측정 완료!</h3>
         </div>
         </Slider>
     </div>

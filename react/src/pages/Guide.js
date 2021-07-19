@@ -1,13 +1,21 @@
-import React from "react";
+import React from 'react';
 import { Link } from 'react-router-dom';
+import Slide from "../components/Slide";
+import Button from 'react-bootstrap/Button';
 
 function Guide() {
-  return (
-    <div>
-      <h2>RINGFIT GUIDE</h2>
-      <Link to="/upload">next</Link>
-    </div>
-  );
+    return(
+        <div>
+            <Slide/>
+            <p></p>
+            <p></p>
+            <Link to ='/upload'>
+<Button variant="primary" size="lg"
+style={{fontFamily: 'cookie',width:'100vw',textAlign:'center',marginTop :'40px',backgroundColor:'rgb(13, 202, 240)',paddingLeft: '109px',paddingRight: '108px',borderRightWidth: '2px'}}>
+    사진 업로드 하기
+</Button></Link>
+        </div>
+    );
 }
 
 export default Guide;

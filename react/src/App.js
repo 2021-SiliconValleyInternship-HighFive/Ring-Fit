@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Routes from "./routes";
-
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './index.css';
 function App() {
   return (
     <div className="App">
