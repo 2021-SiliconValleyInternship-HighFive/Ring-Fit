@@ -1,6 +1,0 @@
-FROM mongo:latest
-
-EXPOSE 27017
-
-# 모든 아이피 입력을 받기 위해 --bind_ip_all 옵션을 사용합니다.
-CMD ["mongod", "--bind_ip_all"]
