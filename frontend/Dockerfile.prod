@@ -5,10 +5,10 @@ FROM ubuntu:20.04
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Set working directory
-WORKDIR /react
+WORKDIR /frontend
 
 # Add /react/node_modules/.bin to environment variables
-ENV PATH /react/node_modules/.bin:$PATH
+ENV PATH /frontend/node_modules/.bin:$PATH
 
 # apt -y upgrade
 RUN apt -y update && \

@@ -1,7 +1,7 @@
 # docker container base image
 FROM ubuntu:20.04
 
-WORKDIR /react
+WORKDIR /frontend
 
 RUN apt -y update && \
   apt install -y curl gnupg2 && \
@@ -10,7 +10,7 @@ RUN apt -y update && \
   npm install -g npm@latest create-react-app
 
 # Add /react/node_modules/.bin to environment variables
-ENV PATH /react/node_modules/.bin:$PATH
+ENV PATH /frontend/node_modules/.bin:$PATH
 
 COPY package*.json .
 
