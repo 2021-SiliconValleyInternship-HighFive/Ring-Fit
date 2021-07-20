@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
 import axios from "axios";
+import React, { useState, useRef } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import Draggable from "react-draggable";
 import Button from "react-bootstrap/Button";
@@ -7,11 +7,15 @@ import "../css/Measure.css";
 
 function Measure() {
   const history = useHistory();
+
   const nodeRef = useRef(null);
+
   const location = useLocation();
   const image = location.state.image;
   const imgUrl = URL.createObjectURL(image);
+  
   const size = window.innerWidth * 0.8;
+  
   const [coord, setCoord] = useState({
     x: 0,
     y: 0,
@@ -27,6 +31,7 @@ function Measure() {
   /* 513 * 513 이미지 기준 좌표 계산 */
   let trans = (a) => parseInt((513 * a) / window.innerWidth);
 
+  /* post function (api 연동) */
   const handlePost = async () => {
     const x = trans(coord.x);
     const y = trans(coord.y);
@@ -37,7 +42,7 @@ function Measure() {
         "content-type": "multipart/form-data",
       },
     };
-    const data = new FormData();
+    const data = new FormData(); // formData 생성
     data.append("x", x);
     data.append("y", y);
     data.append("file", image);
@@ -69,16 +74,16 @@ function Measure() {
 
   return (
     <div>
-      {/* 좌표 확인 test용*/}
       <div
         className="header"
         style={{ fontFamily: "cookie", textAlign: "center", marginTop: "50px" }}
       >
         MOVE REDLINE
       </div>
-      <h2>
+      <h2>       {/* 좌표 확인 test용*/}
         coord x: {coord.x} y: {coord.y}
       </h2>
+
       <div id="image" style={boxStyle}>
         <Draggable nodeRef={ nodeRef } bounds="parent" onDrag={(e, data) => onDrag(data)} >
           <span ref={nodeRef} className="drag"></span>
