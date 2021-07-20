@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import Resizer from "react-image-file-resizer";
 import tempPreview from "../images/tempPreview.png";
 
