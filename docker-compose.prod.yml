@@ -1,21 +1,21 @@
 version: "3.0"
 
 services:
-  react: 
+  frontend: 
     build:
-      context: ./react
+      context: ./frontend
       dockerfile: Dockerfile.prod
-    image: react:prod
-    container_name: react
+    image: frontend:prod
+    container_name: frontend
+    args:
+      - REACT_APP_SERVICES_HOST=/api/
     volumes: 
-      - ./react:/react
-      # - ./react/node_modules/:/react/node_modules 
-      - build_folder:/react/build
-      # - '/app/node_modules'
-    stdin_open: true
+      - ./frontend:/frontend
+      - ./frontend/node_modules/:/frontend/node_modules 
+      - build_folder:/frontend/build
     tty: true
     depends_on: 
-      - flask 
+      - api_server 
     networks:
       - highfive
 
@@ -28,35 +28,42 @@ services:
     ports:
       - 80:80
     depends_on:
-      - flask
-      - react
+      - api_server
+      - frontend
     volumes: 
       - build_folder:/var/www/frontend
     networks:
       - highfive
-    restart: always
+    # exit code 실패 오류 시 재시작 
+    restart: on-failure 
 
-  flask:
+  api_server:
     build:
-      context: ./flask
+      context: ./backend/api_server
       dockerfile: Dockerfile.prod
-    image: flask:prod
-    container_name: flask
+    image: api_server:prod
+    container_name: api_server
     ports:
-      - 5000:5000
+      - 8000:8000
     volumes:
-      - ./flask:/flask
-    environment: 
-      - FLASK_APP=app
-      - FLASK_ENV=production
-    # Dockerfile.prod에 CMD로 넣어줬습니다.
-    # command: gunicorn -w 1 --bind 0.0.0.0:5000 app:app --reload
-    
-    # wsgi.py를 추가한 경우
-    # command: gunicorn -w 1 --bind 0.0.0.0:5000 wsgi:app
+      - ./backend/api_server:/api_server
     networks:
       - highfive
     restart: always
+
+  # model_server:
+  #   build:
+  #     context: ./backend/model_server
+  #     dockerfile: Dockerfile
+  #   image: model_server:prod
+  #   container_name: model_server
+  #   ports:
+  #     - 8001:8000
+  #   volumes:
+  #     - ./backend/model_server:/model_server
+  #   networks:
+  #     - highfive
+  #   restart: always
 
 volumes: 
   build_folder:
