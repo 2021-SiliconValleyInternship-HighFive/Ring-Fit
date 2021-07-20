@@ -35,6 +35,7 @@ from pydantic import BaseModel
 origins = [
     "http://localhost:80",
     "http://localhost:3000",
+    "http://localhost:3000/measure",
     "http://localhost:5000"
 ]
 
