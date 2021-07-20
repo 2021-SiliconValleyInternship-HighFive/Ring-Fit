@@ -19,3 +19,7 @@ code {
   font-family: "ariblk";
   src: url("./font/ariblk.ttf");
 }
+@font-face {
+  font-family: "OpenSans-Regular";
+  src: url("./font/OpenSans-Regular.ttf");
+}

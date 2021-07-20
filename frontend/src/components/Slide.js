@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import { Button } from 'react-bootstrap';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import CrossImg from '../images/Cross.PNG';
 
 export default class LazyLoad extends Component {
 render() {
@@ -17,55 +18,99 @@ render() {
     };
     return (
     <div> 
-    <Button 
-    variant="light"
-    style={{fontFamily: 'cookie',
+    <div
+    style={{
     textAlign:'center',
-    fontWeight: '900',
-    width:'100vw',
-    padding: '1.375rem 7.75rem',}} >
-    RING-FIT GUIDE</Button>{' '}
+    fontFamily:'ariblk',
+    marginTop: '45px',
+    width: '100vw',
+    fontSize: '20px'}} >
+    RINGFIT GUIDE</div>
 
         <Slider {...settings}>
         <div>
-        <img src = "https://placeimg.com/300/300/1"
+        <img src={CrossImg}
             style={{display: 'block',
             margin: '0px auto',
             paddingTop: '50px' ,
-            paddingBottom: '50px'}}/>
-            <h3 style={{fontFamily: 'cookie',
-            textAlign:'center',}}>
-                1. 동전과 손을 준비하세요!</h3>
+            paddingBottom: '15px',
+            width: '300px',
+            height: '470px'}}/>
+            <h style={{fontFamily:'ariblk',
+        fontSize: "21.3px",
+        paddingLeft: '50px'}}>1&nbsp;.</h>
+        <br></br>
+        <div style={{textAlign:'center',paddingBottom: '33px'}}>
+            <h style={{fontFamily: 'OpenSans-Regular',
+            textAlign:'center',
+            width: '100vw',
+            fontSize: "14px",
+            }}>
+                "Take a picture with your finger clearly<br></br>visible on a black background. And put a<br></br>coin on the left. Finally, select and upload a<br></br>photo that meets these criteria."</h>
+                </div>
         </div>
         <div>
-        <img src = "https://placeimg.com/300/300/2"
-            style={{display: 'block', 
-            margin: '0px auto',
-            paddingTop: '50px' ,
-            paddingBottom: '50px'}}/>
-            <h3 style={{fontFamily: 'cookie',
-            textAlign:'center',}}>
-                2. 동전을 왼쪽에, 손을 오른쪽에 두고 사진을 찍어주세요.</h3>
-        </div>
-        <div>
-        <img src = "https://placeimg.com/300/300/3"
+        <img src={CrossImg}
             style={{display: 'block',
             margin: '0px auto',
             paddingTop: '50px' ,
-            paddingBottom: '50px'}}/>
-            <h3 style={{fontFamily: 'cookie',
-            textAlign:'center',}}>
-                3. 길이 측정을 원하는 부위에 빨간 선을 놓으세요!</h3>
+            paddingBottom: '15px',
+            width: '300px',
+            height: '470px'}}/>
+            <h style={{fontFamily:'ariblk',
+        fontSize: "21.3px",
+        paddingLeft: '50px'}}>2&nbsp;.</h>
+        <br></br>
+        <div style={{textAlign:'center',paddingBottom: '33px'}}>
+            <h style={{fontFamily: 'OpenSans-Regular',
+            textAlign:'center',
+            width: '100vw',
+            fontSize: "14px",
+            }}>
+                "Take a picture with your finger clearly<br></br>visible on a black background. And put a<br></br>coin on the left. Finally, select and upload a<br></br>photo that meets these criteria."</h>
+                </div>
         </div>
         <div>
-        <img src = "https://placeimg.com/300/300/4"
+        <img src={CrossImg}
             style={{display: 'block',
             margin: '0px auto',
             paddingTop: '50px' ,
-            paddingBottom: '50px'}}/>
-            <h3 style={{fontFamily: 'cookie',
-            textAlign:'center',}}>
-                4. 측정 완료!</h3>
+            paddingBottom: '15px',
+            width: '300px',
+            height: '470px'}}/>
+            <h style={{fontFamily:'ariblk',
+        fontSize: "21.3px",
+        paddingLeft: '50px'}}>3&nbsp;.</h>
+        <br></br>
+        <div style={{textAlign:'center',paddingBottom: '33px'}}>
+            <h style={{fontFamily: 'OpenSans-Regular',
+            textAlign:'center',
+            width: '100vw',
+            fontSize: "14px",
+            }}>
+                "Take a picture with your finger clearly<br></br>visible on a black background. And put a<br></br>coin on the left. Finally, select and upload a<br></br>photo that meets these criteria."</h>
+                </div>
+        </div>
+        <div>
+        <img src={CrossImg}
+            style={{display: 'block',
+            margin: '0px auto',
+            paddingTop: '50px' ,
+            paddingBottom: '15px',
+            width: '300px',
+            height: '470px'}}/>
+            <h style={{fontFamily:'ariblk',
+        fontSize: "21.3px",
+        paddingLeft: '50px'}}>4&nbsp;.</h>
+        <br></br>
+        <div style={{textAlign:'center',paddingBottom: '33px'}}>
+            <h style={{fontFamily: 'OpenSans-Regular',
+            textAlign:'center',
+            width: '100vw',
+            fontSize: "14px",
+            }}>
+                "Take a picture with your finger clearly<br></br>visible on a black background. And put a<br></br>coin on the left. Finally, select and upload a<br></br>photo that meets these criteria."</h>
+                </div>
         </div>
         </Slider>
     </div>
