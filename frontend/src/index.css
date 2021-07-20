@@ -15,3 +15,7 @@ code {
   font-family: "cookie";
   src: url("./font/Cookie.ttf");
 }
+@font-face {
+  font-family: "ariblk";
+  src: url("./font/ariblk.ttf");
+}

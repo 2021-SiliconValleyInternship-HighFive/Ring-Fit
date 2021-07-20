@@ -1,0 +1,14 @@
+.center {text-align: center; height: 100vh; line-height: 100vh;} 
+
+.center span {width: 320px; 
+    height: 270px; 
+    background-color: #fff; 
+    border-radius: 50%; 
+    text-align: center; 
+    line-height: 140px; 
+    display: inline-block; 
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.604);
+    color: rgba(0,0,0,0.7);
+    font-family: cookie;
+    font-size: 1.25rem;
+}
