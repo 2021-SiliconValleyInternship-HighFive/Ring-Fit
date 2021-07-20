@@ -17,10 +17,10 @@ function Measure() {
   });
 
   /* get coord of image */
-  const onDrag = (e) => {
+  const onDrag = (data) => {
     const bcr = document.getElementById("image").getBoundingClientRect();
-    const x = parseInt(e.targetTouches[0].pageX - bcr.x);
-    const y = parseInt(e.targetTouches[0].pageY - bcr.y);
+    const x = parseInt(window.innerWidth * 0.45 + data.lastX);
+    const y = parseInt(window.innerWidth * 0.45 + data.lastY);
     setCoord({ x: x, y: y });
   };
 
@@ -55,7 +55,9 @@ function Measure() {
     position: "relative",
     backgroundImage: `url(${imgUrl})`,
     backgroundSize: "cover",
-    display: "block", //display 가운데 정렬
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
     margin: "0px auto", //display 가운데 정렬
   };
 
@@ -72,8 +74,8 @@ function Measure() {
         coord x: {coord.x} y: {coord.y}
       </h2>
       <div id="image" style={boxStyle}>
-        <Draggable bounds="parent" onDrag={onDrag}>
-          <box className="drag"></box>
+        <Draggable bounds="parent" onDrag={(e, data) => onDrag(data)}>
+          <span className="drag"></span>
         </Draggable>
       </div>
 
