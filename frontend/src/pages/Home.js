@@ -1,57 +1,36 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import { Card } from 'react-bootstrap';
+
 
 
 function Home() {
 
 return(
-[
-    
-    'Light'
-    
-].map((variant, idx) => (
-    <Card className="Crd"
-    bg={variant.toLowerCase()}
-    key={idx}
-    text={variant.toLowerCase() === 'light' }
-    style={{ width: '100vw' ,height: '800px' }}
-    className="mb-2"
+    <Link to ='/guide' style={{textDecoration: 'none'}} >
+        <div style={{ backgroundColor:'skyblue' ,height:'100vh' ,cursor: 'pointer'}} 
     >
-    
-    <Card.Body>
-        <Card.Title
-        style={{fontSize: '3rem',
-        marginTop: '15rem',
+
+        <h1 style={{color:'white',
         textAlign:'center',
-        fontFamily: 'cookie'}}>💍Ring-Fit💍</Card.Title>
-        <Card.Text>
-        
-        <Link to ='/guide'>
-        
-        <Button variant="outline-Light"
-        style={{ 
-        borderTopWidth: '298px',
-        paddingRight: '100px',
-        paddingLeft: '100px',
-        borderLeftWidth: '38px',
-        borderRightWidth: '34px',
-        borderBottomWidth: '137px',
-        fontFamily: 'cookie',
-        textAlign:'center'}}>
-        시작하기🖐️</Button>{' '}
-        
-        </Link>
-        </Card.Text>
-    </Card.Body>
-    </Card>
-))
-);
+        fontSize: '2.4rem',
+        fontFamily:'ariblk',
+        paddingTop: '318px'
+
+        }}>RING FIT</h1>
+
+<div style={{ textAlign:'center',}}>
+<Button style={{backgroundColor:'skyblue', 
+borderColor:'skyblue',
+fontFamily:'ariblk',
+marginTop: '314px'}}>touch the screen</Button>
+</div>
+</div>
+</Link>
+)
+
 }
-
-
+<Link to ='/guide'></Link>
 export default Home;
-
 
 
