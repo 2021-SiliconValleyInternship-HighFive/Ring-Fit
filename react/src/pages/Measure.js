@@ -23,7 +23,7 @@ function Measure() {
   };
 
   const handlePost = async () => {
-    const url = "http://localhost:8000/api/data";
+    const url = "http://localhost:5000/api/data";
     const config = {
       headers: {
         "content-type": "multipart/form-data",
