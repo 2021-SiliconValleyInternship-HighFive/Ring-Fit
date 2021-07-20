@@ -33,6 +33,10 @@
   ㄴ**feature/returnSize**
   
   : 결과값 API + 결과 페이지
+  
+   ㄴ**feature/api**
+  
+  : frontend API 연동
 
 
 ### 3. commit rule
