@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useHistory, useLocation } from "react-router-dom";
 import Draggable from "react-draggable";
+import Button from 'react-bootstrap/Button';
 
 function Measure() {
   const history = useHistory();
@@ -47,16 +48,24 @@ function Measure() {
   };
 
   const boxStyle = {
+    marginTop: '50px',
     width: size,
     height: size,
     position: "relative",
     backgroundImage: `url(${imgUrl})`,
     backgroundSize: "cover",
+    display: 'block',  //display 가운데 정렬
+    margin: '0px auto' //display 가운데 정렬
   };
 
   return (
     <div>
       {/* 좌표 확인 test용*/}
+      <h1 style={{ fontFamily: 'cookie',
+      textAlign:'center',
+      marginTop: '50px'}}
+      >MOVE REDLINE
+      </h1>
       <h2>
         coord x: {coord.x} y: {coord.y}
       </h2>
@@ -70,7 +79,11 @@ function Measure() {
         </Draggable>
       </div>
 
-      <button onClick={handlePost}>OK</button>
+          <div style={{ textAlign:'center',}}>
+            <Button onClick={handlePost} variant="outline-secondary"
+            style={{marginTop: '50px',}}>OK</Button>
+          </div>
+
     </div>
   );
 }
