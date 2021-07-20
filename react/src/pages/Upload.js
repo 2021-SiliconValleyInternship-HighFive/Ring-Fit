@@ -79,7 +79,12 @@ function Upload() {
         이미지를 클릭하여 업로드 하세요!</h3>
       <br></br>
 
-      <button onClick={onClick}>select</button>
+      <div style={{ textAlign:'center',}}>
+      <Button onClick={onClick} variant="outline-secondary"
+      style={{ borderRadius: '50%',}}
+      >select</Button>
+      </div>
+      
     </div>
   );
 }
