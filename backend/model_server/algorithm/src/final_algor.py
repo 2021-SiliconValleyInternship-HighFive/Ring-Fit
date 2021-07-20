@@ -40,7 +40,8 @@ input_size = input_details[0]['shape'][2], input_details[0]['shape'][1]
 print(input_size)
 
 #2. 경로처리 (프론트에서 받은 이미지 파일 경로)
-testimg_dir='coin_hand.JPG'
+# testimg_dir='coin_hand.JPG'
+testimg_dir = file
 
 im = Image.open(testimg_dir)
 im = im.resize((513, 513))
