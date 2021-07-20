@@ -5,13 +5,16 @@ from pydantic import BaseModel
 # from fastapi.testclient import TestClient
 # from fastapi.responses import HTMLResponse
 
+import requests
+import json
+
 #
 app = FastAPI()
 
 # Add CORS URLs 
 # Default Port - React : 3000, Flask : 5000
 origins = [
-    "http://localhost:3000",
+    "http://localhost:80",
     "http://localhost:5000"
 ]
 
@@ -51,6 +54,7 @@ class Size(BaseModel):
 #     return {"filename" : file.filename}  
 
 
+
 # 데이터 전송 API
 # content-type: multipart/form-data
 @app.post('/api/data', status_code=201)
@@ -67,6 +71,22 @@ async def send_data(
 # 결괏값 반환 API
 # content-type: application/json
 @app.post('/api/result', status_code=201)
-async def get_result(result: Size):
+async def return_result(result: Size):
     return result
+
+# #test
+# url = "http://localhost:8000/api/result"
+# data = {"circumference" : 50, "size" : 12}
+# res = request.port(url, data=json.dumps(data))
+# res.text
+
+
+# --------------- front 연동 테스트 --------------- #
+@app.get("/")
+async def read_root():
+    return {"Hello": "World"}
+
+
+
+# --------------- flask 연동 테스트 --------------- #
 
