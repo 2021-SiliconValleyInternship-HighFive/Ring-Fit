@@ -13,35 +13,59 @@ render() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    initialSlide: 2
+    initialSlide: 0
     };
     return (
     <div> 
     <Button 
-    variant="info"
-    style={{fontFamily: 'cookie',textAlign:'center',
-    color: 'white', fontWeight: '900',width:'100vw',padding: '1.375rem 7.75rem',backgroundColor:  'rgb(13, 202, 240)',
-    borderColor:  'rgb(13, 202, 240)'}} >RING-FIT 사용법💍</Button>{' '}
+    variant="light"
+    style={{fontFamily: 'cookie',
+    textAlign:'center',
+    fontWeight: '900',
+    width:'100vw',
+    padding: '1.375rem 7.75rem',}} >
+    RING-FIT GUIDE</Button>{' '}
+
         <Slider {...settings}>
         <div>
         <img src = "https://placeimg.com/300/300/1"
-            style={{display: 'block', margin: '0px auto',paddingTop: '50px' ,paddingBottom: '50px'}}/>
-            <h3 style={{fontFamily: 'cookie',textAlign:'center',color:'rgb(13, 202, 240)'}}>동전과 손을 준비하세요!</h3>
+            style={{display: 'block',
+            margin: '0px auto',
+            paddingTop: '50px' ,
+            paddingBottom: '50px'}}/>
+            <h3 style={{fontFamily: 'cookie',
+            textAlign:'center',}}>
+                1. 동전과 손을 준비하세요!</h3>
         </div>
         <div>
         <img src = "https://placeimg.com/300/300/2"
-            style={{display: 'block', margin: '0px auto',paddingTop: '50px' ,paddingBottom: '50px'}}/>
-            <h3 style={{fontFamily: 'cookie',textAlign:'center',color:'rgb(13, 202, 240)'}}>동전을 왼쪽에, 손을 오른쪽에 두고 사진을 찍어주세요.</h3>
+            style={{display: 'block', 
+            margin: '0px auto',
+            paddingTop: '50px' ,
+            paddingBottom: '50px'}}/>
+            <h3 style={{fontFamily: 'cookie',
+            textAlign:'center',}}>
+                2. 동전을 왼쪽에, 손을 오른쪽에 두고 사진을 찍어주세요.</h3>
         </div>
         <div>
         <img src = "https://placeimg.com/300/300/3"
-            style={{display: 'block', margin: '0px auto',paddingTop: '50px' ,paddingBottom: '50px'}}/>
-            <h3 style={{fontFamily: 'cookie',textAlign:'center',color:'rgb(13, 202, 240)'}}>길이 측정을 원하는 부위에 빨간 선을 놓으세요!</h3>
+            style={{display: 'block',
+            margin: '0px auto',
+            paddingTop: '50px' ,
+            paddingBottom: '50px'}}/>
+            <h3 style={{fontFamily: 'cookie',
+            textAlign:'center',}}>
+                3. 길이 측정을 원하는 부위에 빨간 선을 놓으세요!</h3>
         </div>
         <div>
         <img src = "https://placeimg.com/300/300/4"
-            style={{display: 'block', margin: '0px auto',paddingTop: '50px' ,paddingBottom: '50px'}}/>
-            <h3 style={{fontFamily: 'cookie',textAlign:'center',color:'rgb(13, 202, 240)'}}>측정 완료!</h3>
+            style={{display: 'block',
+            margin: '0px auto',
+            paddingTop: '50px' ,
+            paddingBottom: '50px'}}/>
+            <h3 style={{fontFamily: 'cookie',
+            textAlign:'center',}}>
+                4. 측정 완료!</h3>
         </div>
         </Slider>
     </div>
