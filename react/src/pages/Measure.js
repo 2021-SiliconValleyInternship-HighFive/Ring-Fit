@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useHistory, useLocation } from "react-router-dom";
 import Draggable from "react-draggable";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
+import "../css/Measure.css";
 
 function Measure() {
   const history = useHistory();
@@ -18,13 +19,13 @@ function Measure() {
   /* get coord of image */
   const onDrag = (e) => {
     const bcr = document.getElementById("image").getBoundingClientRect();
-    const x = e.targetTouches[0].pageX - bcr.x;
-    const y = e.targetTouches[0].pageY - bcr.y;
+    const x = parseInt(e.targetTouches[0].pageX - bcr.x);
+    const y = parseInt(e.targetTouches[0].pageY - bcr.y);
     setCoord({ x: x, y: y });
   };
 
   const handlePost = async () => {
-    const url = "http://localhost:5000/api/data";
+    const url = "http://localhost:8000/api/data";
     const config = {
       headers: {
         "content-type": "multipart/form-data",
@@ -48,42 +49,43 @@ function Measure() {
   };
 
   const boxStyle = {
-    marginTop: '50px',
+    marginTop: "50px",
     width: size,
     height: size,
     position: "relative",
     backgroundImage: `url(${imgUrl})`,
     backgroundSize: "cover",
-    display: 'block',  //display 가운데 정렬
-    margin: '0px auto' //display 가운데 정렬
+    display: "block", //display 가운데 정렬
+    margin: "0px auto", //display 가운데 정렬
   };
 
   return (
     <div>
       {/* 좌표 확인 test용*/}
-      <h1 style={{ fontFamily: 'cookie',
-      textAlign:'center',
-      marginTop: '50px'}}
-      >MOVE REDLINE
-      </h1>
+      <div
+        className="header"
+        style={{ fontFamily: "cookie", textAlign: "center", marginTop: "50px" }}
+      >
+        MOVE REDLINE
+      </div>
       <h2>
         coord x: {coord.x} y: {coord.y}
       </h2>
       <div id="image" style={boxStyle}>
-        <Draggable
-          bounds="parent"
-          style={{ position: "absolute" }}
-          onDrag={onDrag}
-        >
-          <img src="https://placeimg.com/10/10/any" />
+        <Draggable bounds="parent" onDrag={onDrag}>
+          <box className="drag"></box>
         </Draggable>
       </div>
 
-          <div style={{ textAlign:'center',}}>
-            <Button onClick={handlePost} variant="outline-secondary"
-            style={{marginTop: '50px',}}>OK</Button>
-          </div>
-
+      <div style={{ textAlign: "center" }}>
+        <Button
+          onClick={handlePost}
+          variant="outline-secondary"
+          style={{ marginTop: "50px" }}
+        >
+          OK
+        </Button>
+      </div>
     </div>
   );
 }
