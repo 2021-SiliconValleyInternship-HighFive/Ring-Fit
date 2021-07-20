@@ -10,7 +10,7 @@ function Measure() {
   const location = useLocation();
   const image = location.state.image;
   const imgUrl = URL.createObjectURL(image);
-  const size = String(window.innerWidth * 0.9) + "px";
+  const size = window.innerWidth * 0.8;
   const [coord, setCoord] = useState({
     x: 0,
     y: 0,
@@ -18,13 +18,18 @@ function Measure() {
 
   /* get coord of image */
   const onDrag = (data) => {
-    const bcr = document.getElementById("image").getBoundingClientRect();
-    const x = parseInt(window.innerWidth * 0.45 + data.lastX);
-    const y = parseInt(window.innerWidth * 0.45 + data.lastY);
+    const x = size * 0.5 + data.lastX;
+    const y = size * 0.5 + data.lastY;
     setCoord({ x: x, y: y });
   };
 
+  /* 513 * 513 이미지 기준 좌표 계산 */
+  let trans = (a) => parseInt((513 * a) / window.innerWidth);
+
   const handlePost = async () => {
+    const x = trans(coord.x);
+    const y = trans(coord.y);
+    console.log("x: ", x, "y: ", y); // 확인용
     const url = "http://localhost:8000/api/data";
     const config = {
       headers: {
@@ -32,10 +37,10 @@ function Measure() {
       },
     };
     const data = new FormData();
-    data.append("x", coord.x);
-    data.append("y", coord.y);
+    data.append("x", x);
+    data.append("y", y);
     data.append("file", image);
-    for (var pair of data.entries()) {
+    for (var pair of data.entries()) { // 확인용
       console.log(pair[0] + ", " + pair[1]);
     }
     await axios
@@ -50,8 +55,8 @@ function Measure() {
 
   const boxStyle = {
     marginTop: "50px",
-    width: size,
-    height: size,
+    width: String(size) + "px",
+    height: String(size) + "px",
     position: "relative",
     backgroundImage: `url(${imgUrl})`,
     backgroundSize: "cover",
