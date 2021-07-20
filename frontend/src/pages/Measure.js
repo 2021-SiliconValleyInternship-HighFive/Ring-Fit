@@ -18,13 +18,13 @@ function Measure() {
   /* get coord of image */
   const onDrag = (e) => {
     const bcr = document.getElementById("image").getBoundingClientRect();
-    const x = e.targetTouches[0].pageX - bcr.x;
-    const y = e.targetTouches[0].pageY - bcr.y;
-    setCoord({ x: x, y: y });
+    //const x = e.targetTouches[0].pageX - bcr.x;
+    //const y = e.targetTouches[0].pageY - bcr.y;
+    // setCoord({ x: x, y: y });
   };
 
   const handlePost = async () => {
-    const url = "http://localhost:5000/api/data";
+    const url = "http://localhost:8000/api/data";
     const config = {
       headers: {
         "content-type": "multipart/form-data",
