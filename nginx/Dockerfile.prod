@@ -15,8 +15,8 @@ RUN apt update && \
 
 COPY nginx.conf /etc/nginx/conf.d/nginx.conf
 
-# CMD 명령어가 실행 할 경로로 이동
-WORKDIR /etc/nginx
+# # CMD 명령어가 실행 할 경로로 이동
+# WORKDIR /etc/nginx
 
 # 80번 포트를 오픈하여 웹서버에 정상적으로 접근할 수 있게 합니다.
 EXPOSE 80
