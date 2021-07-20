@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import axios from "axios";
+import { useHistory, useLocation } from "react-router-dom";
 import Draggable from "react-draggable";
 
 function Measure() {
+  const history = useHistory();
   const location = useLocation();
   const image = location.state.image;
   const imgUrl = URL.createObjectURL(image);
@@ -20,12 +22,36 @@ function Measure() {
     setCoord({ x: x, y: y });
   };
 
+  const handlePost = async () => {
+    const url = "http://localhost:8000/api/data";
+    const config = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    const data = new FormData();
+    data.append("x", coord.x);
+    data.append("y", coord.y);
+    data.append("file", image);
+    for (var pair of data.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+    await axios
+      .post(url, data, config)
+      .then((res) => {
+        history.push("/result");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const boxStyle = {
     width: size,
     height: size,
     position: "relative",
     backgroundImage: `url(${imgUrl})`,
-    backgroundSize: "cover"
+    backgroundSize: "cover",
   };
 
   return (
@@ -40,14 +66,11 @@ function Measure() {
           style={{ position: "absolute" }}
           onDrag={onDrag}
         >
-          <img src="https://placeimg.com/10/10/any" /> 
+          <img src="https://placeimg.com/10/10/any" />
         </Draggable>
       </div>
 
-      <footer>
-        <Link to="/upload">취소</Link>
-        <Link to="/result">확인</Link>
-      </footer>
+      <button onClick={handlePost}>OK</button>
     </div>
   );
 }
