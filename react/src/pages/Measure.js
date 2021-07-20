@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { useHistory, useLocation } from "react-router-dom";
 import Draggable from "react-draggable";
@@ -7,6 +7,7 @@ import "../css/Measure.css";
 
 function Measure() {
   const history = useHistory();
+  const nodeRef = useRef(null);
   const location = useLocation();
   const image = location.state.image;
   const imgUrl = URL.createObjectURL(image);
@@ -79,8 +80,8 @@ function Measure() {
         coord x: {coord.x} y: {coord.y}
       </h2>
       <div id="image" style={boxStyle}>
-        <Draggable bounds="parent" onDrag={(e, data) => onDrag(data)}>
-          <span className="drag"></span>
+        <Draggable nodeRef={ nodeRef } bounds="parent" onDrag={(e, data) => onDrag(data)} >
+          <span ref={nodeRef} className="drag"></span>
         </Draggable>
       </div>
 
