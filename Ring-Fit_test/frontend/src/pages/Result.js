@@ -13,7 +13,7 @@ function Result() {
     const fetchUser = async() => {
       try {
         setLoading(true);
-        const url = "http://localhost:8000/api/result";
+        const url = "http://localhost:5000/api/result";
         const response =  await axios.get(url);
         setUser({round: response.data.cirumference, size: response.data.size});
       }catch(e) {
@@ -28,7 +28,7 @@ function Result() {
   height: '100vh' ,
   lineHeight: '100vh',
   fontSize: '3rem',
-  fontFamily: 'cookie'}}>
+  fontFamily: 'ariblk'}}>
     Loading<Spinner animation="border" size="xl" /></div>;
   return (
     <div>

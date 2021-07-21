@@ -1,0 +1,8 @@
+.start-bg {
+    margin: 0;
+    padding: 0;
+    background: url("../images/mainImg.jpg") no-repeat center fixed;
+    background-size: cover;
+    min-width: 70%;
+    min-height: 70%;
+}
