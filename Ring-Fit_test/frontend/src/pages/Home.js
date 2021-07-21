@@ -16,8 +16,8 @@ return(
         textAlign:'center',
         fontSize: '2.4rem',
         fontFamily:'ariblk',
-        paddingTop: '318px'
-
+        paddingTop: '318px',
+        marginTop: '0px'
         }}>RING FIT</h1>
 
 <div style={{ textAlign:'center',marginTop: '314px'}}>
