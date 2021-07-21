@@ -1,7 +1,7 @@
 from fastapi import FastAPI, File, UploadFile, Form
-# from fastapi.middleware.cors import CORSMiddleware
-from starlette.middleware import Middleware
-from starlette.middleware.cors import CORSMiddleware
+from fastapi.middleware.cors import CORSMiddleware
+# from starlette.middleware import Middleware
+# from starlette.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
 # from fastapi.testclient import TestClient
@@ -10,40 +10,43 @@ from pydantic import BaseModel
 # import requests
 # import json
 
-# # FastAPI CORSMiddleware 
-# app = FastAPI()
+# FastAPI CORSMiddleware 
+app = FastAPI()
 
-# # Add CORS URLs 
-# # Default Port - Nginx: 80, Flask : 5000
-# origins = [
-#     "http://localhost:80",
-#     "http://localhost:3000",
-#     "http://localhost:5000"
+# Add CORS URLs 
+# Default Port - Nginx: 80, Flask : 5000
+origins = [
+    # "http://localhost:80",
+    # "http://localhost:3000",
+    # "http://localhost:5000",
+    "http://localhost"
+]
+
+
+# Add CORSMiddleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins = origins,
+    allow_credentials = True,
+    allow_methods = ["*"],
+    allow_headers = ["*"],
+)
+
+# # TRY: Starlette CORSMiddleware
+# origins = [ 
+#     "http://localhost:80"
+#     # "http://localhost:3000",
+#     # "http://localhost:3000/measure",
+#     # "http://localhost:5000"
+#     # "http://localhost:8000",
+#     # "http://localhost"   #되는 주소
 # ]
 
+# middleware = [
+#     Middleware(CORSMiddleware, allow_origins=origins)
+# ]
 
-# # Add CORSMiddleware
-# app.add_middleware(
-#     CORSMiddleware,
-#     allow_origins = origins,
-#     allow_credentials = True,
-#     allow_methods = ["*"],
-#     allow_headers = ["*"],
-# )
-
-# TRY: Starlette CORSMiddleware
-origins = [
-    "http://localhost:80",
-    "http://localhost:3000",
-    "http://localhost:3000/measure",
-    "http://localhost:5000"
-]
-
-middleware = [
-    Middleware(CORSMiddleware, allow_origins=origins)
-]
-
-app = FastAPI(middleware=middleware)
+# app = FastAPI(middleware=middleware)
 
 
 '''
