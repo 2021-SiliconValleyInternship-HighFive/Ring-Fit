@@ -79,12 +79,13 @@ function Measure() {
         style={{ fontFamily: "ariblk",
         textAlign: "center",
         marginTop: "50px",
+        marginBottom: '30px',
         fontSize: '21px' }}
       >
         MOVE REDLINE
       </div>
       <h2>       {/* 좌표 확인 test용*/}
-        coord x: {coord.x} y: {coord.y}
+        {/* coord x: {coord.x} y: {coord.y} */}
       </h2>
 
       <div id="image" style={boxStyle}>
