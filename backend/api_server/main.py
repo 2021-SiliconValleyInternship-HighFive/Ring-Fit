@@ -16,9 +16,6 @@ app = FastAPI()
 # Add CORS URLs 
 # Default Port - Nginx: 80, Flask : 5000
 origins = [
-    # "http://localhost:80",
-    # "http://localhost:3000",
-    # "http://localhost:5000",
     "http://localhost"
 ]
 
