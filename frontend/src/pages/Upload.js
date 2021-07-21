@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Resizer from "react-image-file-resizer";
-import tempPreview from "../images/tempPreview.png";
+import tempPreview from "../images/uploadPreview.PNG";
 import Button from 'react-bootstrap/Button';
 
 function Upload() {
@@ -13,6 +13,7 @@ function Upload() {
   const imgStyle = {
     width: "80%",
     height: "80%",
+    marginBottom: "60px"
   };
 
   /* resize image func: 513 * 513 크기로 base64형식 이미지 리턴 */
@@ -55,7 +56,9 @@ function Upload() {
       <h1 style={{ fontFamily: 'cookie',
       width: '100vw' ,
       textAlign:'center',
-      marginTop: '30px'}}>
+      fontFamily:'ariblk',
+      marginTop: '40px',
+      fontSize: '21px'}}>
         UPLOAD</h1>
 
       <input
@@ -72,16 +75,25 @@ function Upload() {
       <img className="uploadImage" src={preview} style={imgStyle} />
       </label>
 
-      <h3 style={{ fontFamily: 'cookie',
-      width: '100vw' ,
-      textAlign:'center', 
-      marginTop: '80px'}}>
-        이미지를 클릭하여 업로드 하세요!</h3>
+      <div style={{textAlign:'center',paddingBottom: '33px'}}>
+            <h style={{fontFamily: 'OpenSans-Regular',
+            textAlign:'center',
+            width: '100vw',
+            fontSize: "14px",
+            }}>
+                Take a picture with your finger clearly<br></br>visible on a black background. And put a<br></br>coin on the left. Finally, select and upload a<br></br>photo that meets these criteria.</h>
+                </div>
       <br></br>
 
       <div style={{ textAlign:'center',}}>
       <Button onClick={onClick} variant="outline-secondary"
-      style={{ borderRadius: '50%',}}
+      style={{ borderRadius: '50%',
+      borderWidth: '3px',
+      borderColor:'black',
+      color:'black',
+      fontFamily:'ariblk',
+      paddingRight: '20px',
+      paddingLeft:'20px'}}
       >select</Button>
       </div>
       

@@ -46,7 +46,7 @@ render() {
             width: '100vw',
             fontSize: "14px",
             }}>
-                "Take a picture with your finger clearly<br></br>visible on a black background. And put a<br></br>coin on the left. Finally, select and upload a<br></br>photo that meets these criteria."</h>
+                Take a picture with your finger clearly<br></br>visible on a black background. And put a<br></br>coin on the left. Finally, select and upload a<br></br>photo that meets these criteria.</h>
                 </div>
         </div>
         <div>
@@ -67,7 +67,7 @@ render() {
             width: '100vw',
             fontSize: "14px",
             }}>
-                "Take a picture with your finger clearly<br></br>visible on a black background. And put a<br></br>coin on the left. Finally, select and upload a<br></br>photo that meets these criteria."</h>
+                Take a picture with your finger clearly<br></br>visible on a black background. And put a<br></br>coin on the left. Finally, select and upload a<br></br>photo that meets these criteria.</h>
                 </div>
         </div>
         <div>
@@ -88,7 +88,7 @@ render() {
             width: '100vw',
             fontSize: "14px",
             }}>
-                "Take a picture with your finger clearly<br></br>visible on a black background. And put a<br></br>coin on the left. Finally, select and upload a<br></br>photo that meets these criteria."</h>
+                Take a picture with your finger clearly<br></br>visible on a black background. And put a<br></br>coin on the left. Finally, select and upload a<br></br>photo that meets these criteria.</h>
                 </div>
         </div>
         <div>
@@ -109,7 +109,7 @@ render() {
             width: '100vw',
             fontSize: "14px",
             }}>
-                "Take a picture with your finger clearly<br></br>visible on a black background. And put a<br></br>coin on the left. Finally, select and upload a<br></br>photo that meets these criteria."</h>
+                Take a picture with your finger clearly<br></br>visible on a black background. And put a<br></br>coin on the left. Finally, select and upload a<br></br>photo that meets these criteria.</h>
                 </div>
         </div>
         </Slider>
