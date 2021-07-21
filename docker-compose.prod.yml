@@ -7,8 +7,6 @@ services:
       dockerfile: Dockerfile.prod
     image: frontend:prod
     container_name: frontend
-    args:
-      - REACT_APP_SERVICES_HOST=/api/
     volumes: 
       - ./frontend:/frontend
       - ./frontend/node_modules/:/frontend/node_modules 
