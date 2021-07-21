@@ -34,26 +34,31 @@ function Result() {
     <div>
       <div>
 
-      <h1 style={{ fontFamily: 'cookie',
+      <div style={{ fontFamily: 'ariblk',
       width: '100vw' ,
       textAlign:'center',
-      marginTop: '30px'}}>
-        RING SIZE</h1>
+      marginTop: '35px',
+      fontSize: '20px'}}>
+        RING SIZE</div>
       
         <div class="center" >
         <span>
-        Round&nbsp;&nbsp;{user.round} 
-        <br></br>
-        Size&nbsp;&nbsp;{user.size}
+        round&nbsp;&nbsp;{user.round} 
+        <p></p>
+        size&nbsp;&nbsp;{user.size}
         </span>
         </div>
   
       </div>
       <Link to="/" >
 <div style={{ textAlign:'center',}}>
-        <Button variant="outline-secondary" 
-      style={{borderRadius: '20px', }}>
-      처음으로</Button>{' '}
+        <Button 
+      style={{borderRadius: '10px', 
+      borderColor:'Black',
+      backgroundColor:'Black',
+      fontFamily: 'ariblk',
+      fontSize: '13px'}}>
+      SAVE</Button>{' '}
       </div>
       </Link>
     </div>
