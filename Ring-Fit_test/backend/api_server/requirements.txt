@@ -1,0 +1,15 @@
+# [packages]
+fastapi
+uvicorn
+python-multipart
+
+# [dev-packages]
+# pylint
+# black
+# mypy
+# isort
+# pytest
+# requests
+
+hypercorn
+pydantic

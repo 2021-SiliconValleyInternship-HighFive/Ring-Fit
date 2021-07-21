@@ -1,0 +1,40 @@
+version: "3.0"
+
+services:
+  web:
+    container_name: web_dev
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile.dev
+    ports:
+      - 3000:3000
+    environment: 
+      - NODE_ENV=development
+      # CHOKIDAR_USEPOLLING=ture은 App이 수정되었을 경우 Reload이 가능하도록 하는 설정
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    tty: true
+    depends_on: 
+      - api_server
+    networks:
+      - highfive
+    restart: always
+  
+  api_server:
+    container_name: api_server_dev
+    build:
+      context: .
+      dockerfile: ./backend/api_server/Dockerfile.dev
+    ports:
+      - 8000:8000
+    volumes:
+      - ./backend/api_server:/usr/src/app
+    networks:
+      - highfive
+    restart: always
+
+networks: 
+  highfive:
+    driver: bridge

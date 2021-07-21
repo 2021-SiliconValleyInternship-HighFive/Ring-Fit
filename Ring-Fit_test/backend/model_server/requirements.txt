@@ -1,0 +1,11 @@
+# [packages]
+fastapi
+uvicorn
+
+# [dev-packages]
+pylint
+black
+mypy
+isort
+pytest
+requests
