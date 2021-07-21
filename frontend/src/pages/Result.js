@@ -28,7 +28,7 @@ function Result() {
   height: '100vh' ,
   lineHeight: '100vh',
   fontSize: '3rem',
-  fontFamily: 'cookie'}}>
+  fontFamily: 'ariblk'}}>
     Loading<Spinner animation="border" size="xl" /></div>;
   return (
     <div>
