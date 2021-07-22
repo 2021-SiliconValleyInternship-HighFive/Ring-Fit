@@ -12,6 +12,39 @@ code {
     monospace;
 }
 
+.start-bg {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  background: url("./images/mainImg.jpg") no-repeat center fixed;
+  background-size: cover;
+}
+
+.title {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:white;
+  width: 100%;
+  text-align:center;
+  font-size: 2.4rem;
+  font-family:'ariblk';
+}
+
+.titleText {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align:center;
+  color:white;
+  width: 100%;
+  font-family: "OpenSans-Regular";
+  font-size: 14px;
+}
+
 .header {
   text-align: center;
   font-family: 'ariblk';
