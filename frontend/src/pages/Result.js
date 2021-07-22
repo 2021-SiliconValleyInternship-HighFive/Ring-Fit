@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import Loading from "../components/Loading";
 import "../components/result.css";
+import PropTypes from 'prop-types';
+import NamePicker from '../NamePicker';
 
 function Result() {
   const [user, setUser] = useState({ round: 0, size: 0 });
@@ -97,7 +99,7 @@ function Result() {
             <button className="close" onClick={onModalOn}>
               X
             </button>
-            <div>{/* 모달 내용 */}</div>
+            <NamePicker />
           </div>
         ) : null}
       </div>
