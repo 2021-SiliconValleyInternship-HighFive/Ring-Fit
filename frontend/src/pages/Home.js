@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import '../components/homeImg.css'
+import '../css/homeImg.css';
 
 
 function Home() {
@@ -17,7 +16,8 @@ return(
         fontSize: '2.4rem',
         fontFamily:'ariblk',
         paddingTop: '318px',
-        marginTop: '0px'
+        marginTop: '0px',
+        marginBottom: '0px',
         }}>RING FIT</h1>
 
 <div style={{ textAlign:'center',marginTop: '314px'}}>

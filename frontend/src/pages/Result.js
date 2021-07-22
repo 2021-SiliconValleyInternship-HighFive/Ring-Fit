@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 import Loading from '../components/Loading';
-import '../components/result.css'
+import '../css/result.css';
 
 function Result() {
   const [user, setUser] = useState({round: 0, size: 0});
