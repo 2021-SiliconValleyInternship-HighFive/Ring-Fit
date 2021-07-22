@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
-    <meta name="description" content="Web site created using create-react-app" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -21,100 +22,89 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
+  <title>React App</title>
+</head>
 
-    ringround: <input type="text" id="ringround"><br>
-    ringsize: <input type="text" id="ringsize"><br>
-    <button id="submit">입력</button>
-    <button id="clearAll">모두삭제</button>
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
 
-    <ul id="lists"></ul>
-    
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('./service worker.js').then(function(registration) {
-            console.log('Worker registration successful', registration.scope);
-          }, function(err) {
-            console.log('Worker registration failed', err);
-          }).catch(function(err) {
-            console.log(err);
-          });
-        });
-      } else {
-        console.log('Service Worker is not supported by browser.');
-      }
+  ringround: <input type="text" id="ringround"><br>
+  ringsize: <input type="text" id="ringsize"><br>
+  <button id="submit">입력</button>
+  <button id="clearAll">모두삭제</button>
 
-      const DATABASE = 'MyDatabase';
-        const DB_VERSION = 1;
-        const DB_STORE_NAME = 'company';
-    
-        var db;
-    
-        openDB = () => {
-        
-            var req = indexedDB.open(DATABASE, DB_VERSION);
-    
-        
-            req.onsuccess = function (evt) {
-                db = this.result;
-            };
-            
-            req.onerror = function (evt) {
-                console.error("indexedDB : ", evt.target.errorCode);
-            };
-            
-            req.onupgradeneeded = function (evt) {
-                console.log("indexedDB.onupgradeneeded");
-                var store = evt.currentTarget.result.createObjectStore(DB_STORE_NAME,
-                    { keyPath: 'id', autoIncrement: true });
-    
-                store.createIndex('biblioid', 'biblioid', { unique: true });
-                store.createIndex('title', 'title', { unique: false });
-                store.createIndex('year', 'year', { unique: false });
-            };
-        }
-        
-        openDB()
+  <ul id="lists"></ul>
 
-getObjectStore = (store_name, mode) => {
-    return db.transaction(store_name, mode).objectStore(store_name);
-}
+  <script>
+
+    const DATABASE = 'MyDatabase';
+    const DB_VERSION = 1;
+    const DB_STORE_NAME = 'company';
+
+    var db;
+
+    openDB = () => {
+
+      var req = indexedDB.open(DATABASE, DB_VERSION);
 
 
-$('#submit').on('click', () => {
-    const ringround = $('#ringround').val()
-    const ringsize = $('#ringsize').val()
-    if (!ringround) {
+      req.onsuccess = function (evt) {
+        db = this.result;
+      };
+
+      req.onerror = function (evt) {
+        console.error("indexedDB : ", evt.target.errorCode);
+      };
+
+      req.onupgradeneeded = function (evt) {
+        console.log("indexedDB.onupgradeneeded");
+        var store = evt.currentTarget.result.createObjectStore(DB_STORE_NAME,
+          { keyPath: 'id', autoIncrement: true });
+
+        store.createIndex('biblioid', 'biblioid', { unique: true });
+        store.createIndex('title', 'title', { unique: false });
+        store.createIndex('year', 'year', { unique: false });
+      };
+    }
+
+    openDB()
+
+    getObjectStore = (store_name, mode) => {
+      return db.transaction(store_name, mode).objectStore(store_name);
+    }
+
+    var submit = document.getElementById("submit");
+    submit.addEventListener("click", function () {
+      const ringround = document.getElementById("ringround").value;
+      const ringsize = document.getElementById("ringsize").value;
+      if (!ringround) {
         return alert('ringround 입력해주세요')
-    }
-    if (!ringsize) {
+      }
+      if (!ringsize) {
         return alert('ringsize 입력해주세요')
-    }
-
-  
-    let store = getObjectStore(DB_STORE_NAME, 'readwrite');
-    let req
-    const obj = { 
-        ringround: ringround, 
+      }
+      let store = getObjectStore(DB_STORE_NAME, 'readwrite');
+      let req
+      const obj = {
+        ringround: ringround,
         ringsize: ringsize
-    };
+      };
 
-    try {
+      try {
         req = store.add(obj);
-    } catch (e) { }
+      } catch (e) { }
 
-    req.onsuccess = function (evt) {
+      req.onsuccess = function (evt) {
         console.log("입력 되었습니다.");
-    };
-    req.onerror = function () {
+      };
+      req.onerror = function () {
         console.error(this.error);
-    };
-})
-</script>
-  </body>
+      };
+
+    }, false);
+
+  </script>
+</body>
+
 </html>
