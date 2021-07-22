@@ -1,70 +1,53 @@
 version: "3.0"
 
 services:
-  frontend: 
+  web:
+    container_name: web
     build:
-      context: ./frontend
-      dockerfile: Dockerfile.prod
-    image: frontend:prod
-    container_name: frontend
-    volumes: 
-      - ./frontend:/frontend
-      - ./frontend/node_modules/:/frontend/node_modules 
-      - build_folder:/frontend/build
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    ports:
+      - 3000:3000
+    environment: 
+      - NODE_ENV=production
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
     tty: true
     depends_on: 
-      - api_server 
-    networks:
-      - highfive
-
-  nginx:
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile.prod
-    image: nginx:prod
-    container_name: nginx
-    ports:
-      - 80:80
-    depends_on:
       - api_server
-      - frontend
-    volumes: 
-      - build_folder:/var/www/frontend
     networks:
       - highfive
-    # exit code 실패 오류 시 재시작 
-    restart: on-failure 
-
+  
   api_server:
-    build:
-      context: ./backend/api_server
-      dockerfile: Dockerfile.prod
-    image: api_server:prod
     container_name: api_server
+    build:
+      context: .
+      dockerfile: ./backend/api_server/Dockerfile
     ports:
       - 8000:8000
     volumes:
-      - ./backend/api_server:/api_server
+      - ./backend/api_server:/usr/src/app
     networks:
       - highfive
     restart: always
 
-  # model_server:
-  #   build:
-  #     context: ./backend/model_server
-  #     dockerfile: Dockerfile
-  #   image: model_server:prod
-  #   container_name: model_server
-  #   ports:
-  #     - 8001:8000
-  #   volumes:
-  #     - ./backend/model_server:/model_server
-  #   networks:
-  #     - highfive
-  #   restart: always
-
-volumes: 
-  build_folder:
+  nginx:
+    container_name: nginx
+    build: 
+      context: .
+      dockerfile: ./nginx/Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - ./frontend/build:/usr/share/nginx/html
+    depends_on:
+      - api_server
+      - web
+    networks:
+      - highfive
+    # exit code 실패 오류 시 재시작 
+    restart: on-failure
 
 networks: 
   highfive:

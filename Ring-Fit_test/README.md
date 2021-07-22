@@ -1,1 +1,0 @@
-# fastapi-react-nginx-docker

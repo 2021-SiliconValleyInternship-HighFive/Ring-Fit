@@ -1,48 +1,37 @@
 version: "3.0"
 
 services:
-  # react
-  frontend: 
+  web:
+    container_name: web_dev
     build:
-      context: ./react
-      dockerfile: Dockerfile.dev
-    image: react:dev
-    container_name: react
-    volumes: 
-      - ./react:/react
-      - ./react/node_modules/:/react/node_modules 
-      # - '/app/node_modules' 
-    ports: 
-      - 3000:3000 
+      context: .
+      dockerfile: ./frontend/Dockerfile.dev
+    ports:
+      - 3000:3000
     environment: 
       - NODE_ENV=development
       # CHOKIDAR_USEPOLLING=ture은 App이 수정되었을 경우 Reload이 가능하도록 하는 설정
       - CHOKIDAR_USEPOLLING=true
-    # Dockerfile.dev에 CMD로 넣어줬습니다.
-    # command: npm start
-    stdin_open: true
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
     tty: true
-    depends_on:
-      - model_server
-    networks: 
+    depends_on: 
+      - api_server
+    networks:
       - highfive
     restart: always
-
-  # fastapi로 변경 해야합니다.
-  model_server:
+  
+  api_server:
+    container_name: api_server_dev
     build:
-      context: ./backend/model_server
-      dockerfile: Dockerfile.dev
-    image: model_server:dev
-    container_name: model_server
+      context: .
+      dockerfile: ./backend/api_server/Dockerfile.dev
     ports:
-      - 5000:5000
+      - 8000:8000
     volumes:
-      - ./backend/model_server/:/model_server
-    environment: 
-      - FLASK_APP=app
-      - FLASK_ENV=development
-    networks: 
+      - ./backend/api_server:/usr/src/app
+    networks:
       - highfive
     restart: always
 

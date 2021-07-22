@@ -1,8 +1,8 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import {  Spinner } from 'react-bootstrap';
 import { Button } from 'react-bootstrap';
+import Loading from '../components/Loading';
 import '../components/result.css'
 
 function Result() {
@@ -13,7 +13,7 @@ function Result() {
     const fetchUser = async() => {
       try {
         setLoading(true);
-        const url = "http://localhost:5000/api/result";
+        const url = "http://localhost:8000/api/result";
         const response =  await axios.get(url);
         setUser({round: response.data.cirumference, size: response.data.size});
       }catch(e) {
@@ -24,15 +24,10 @@ function Result() {
     fetchUser();
   },[]);
 
-  if (loading) return <div style={{textAlign:'center' ,
-  height: '100vh' ,
-  lineHeight: '100vh',
-  fontSize: '3rem',
-  fontFamily: 'ariblk'}}>
-    Loading<Spinner animation="border" size="xl" /></div>;
+  if (loading) return <Loading />;
   return (
     <div>
-      <div>
+      <div className="result">
 
       <div style={{ fontFamily: 'ariblk',
       width: '100vw' ,

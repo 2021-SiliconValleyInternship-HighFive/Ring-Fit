@@ -1,23 +1,11 @@
-# docker container base image
-FROM ubuntu:20.04
+FROM node:12.14.1-alpine
 
-WORKDIR /frontend
+WORKDIR /usr/src/app
 
-RUN apt -y update && \
-  apt install -y curl gnupg2 && \
-  curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
-  apt install -y nodejs && \
-  npm install -g npm@latest create-react-app
+COPY ./frontend/package.json /usr/src/app/
 
-# Add /react/node_modules/.bin to environment variables
-ENV PATH /frontend/node_modules/.bin:$PATH
-
-COPY package*.json .
-
-# package*.json 파일을 설치
 RUN npm install
 
-# Expose ports
-EXPOSE 3000
+COPY . .
 
-CMD ["npm", "start"]
+CMD [ "npm", "start" ]

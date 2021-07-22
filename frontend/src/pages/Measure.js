@@ -35,7 +35,6 @@ function Measure() {
   const handlePost = async () => {
     const x = trans(coord.x);
     const y = trans(coord.y);
-    console.log("x: ", x, "y: ", y); // 확인용
     const url = "http://localhost:8000/api/data";
     const config = {
       headers: {
@@ -84,9 +83,6 @@ function Measure() {
       >
         MOVE REDLINE
       </div>
-      <h2>       {/* 좌표 확인 test용*/}
-        {/* coord x: {coord.x} y: {coord.y} */}
-      </h2>
 
       <div id="image" style={boxStyle}>
         <Draggable nodeRef={ nodeRef } bounds="parent" onDrag={(e, data) => onDrag(data)} >
