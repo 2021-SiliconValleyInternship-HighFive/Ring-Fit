@@ -26,6 +26,14 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+
+    ringround: <input type="text" id="ringround"><br>
+    ringsize: <input type="text" id="ringsize"><br>
+    <button id="submit">입력</button>
+    <button id="clearAll">모두삭제</button>
+
+    <ul id="lists"></ul>
+    
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function() {
@@ -40,6 +48,73 @@
       } else {
         console.log('Service Worker is not supported by browser.');
       }
+
+      const DATABASE = 'MyDatabase';
+        const DB_VERSION = 1;
+        const DB_STORE_NAME = 'company';
+    
+        var db;
+    
+        openDB = () => {
+        
+            var req = indexedDB.open(DATABASE, DB_VERSION);
+    
+        
+            req.onsuccess = function (evt) {
+                db = this.result;
+            };
+            
+            req.onerror = function (evt) {
+                console.error("indexedDB : ", evt.target.errorCode);
+            };
+            
+            req.onupgradeneeded = function (evt) {
+                console.log("indexedDB.onupgradeneeded");
+                var store = evt.currentTarget.result.createObjectStore(DB_STORE_NAME,
+                    { keyPath: 'id', autoIncrement: true });
+    
+                store.createIndex('biblioid', 'biblioid', { unique: true });
+                store.createIndex('title', 'title', { unique: false });
+                store.createIndex('year', 'year', { unique: false });
+            };
+        }
+        
+        openDB()
+
+getObjectStore = (store_name, mode) => {
+    return db.transaction(store_name, mode).objectStore(store_name);
+}
+
+
+$('#submit').on('click', () => {
+    const ringround = $('#ringround').val()
+    const ringsize = $('#ringsize').val()
+    if (!ringround) {
+        return alert('ringround 입력해주세요')
+    }
+    if (!ringsize) {
+        return alert('ringsize 입력해주세요')
+    }
+
+  
+    let store = getObjectStore(DB_STORE_NAME, 'readwrite');
+    let req
+    const obj = { 
+        ringround: ringround, 
+        ringsize: ringsize
+    };
+
+    try {
+        req = store.add(obj);
+    } catch (e) { }
+
+    req.onsuccess = function (evt) {
+        console.log("입력 되었습니다.");
+    };
+    req.onerror = function () {
+        console.error(this.error);
+    };
+})
 </script>
   </body>
 </html>
