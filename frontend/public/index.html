@@ -29,12 +29,7 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
 
-  ringround: <input type="text" id="ringround"><br>
-  ringsize: <input type="text" id="ringsize"><br>
-  <button id="submit">입력</button>
-  <button id="clearAll">모두삭제</button>
-
-  <ul id="lists"></ul>
+  
 
   <script>
 
@@ -73,36 +68,6 @@
     getObjectStore = (store_name, mode) => {
       return db.transaction(store_name, mode).objectStore(store_name);
     }
-
-    var submit = document.getElementById("submit");
-    submit.addEventListener("click", function () {
-      const ringround = document.getElementById("ringround").value;
-      const ringsize = document.getElementById("ringsize").value;
-      if (!ringround) {
-        return alert('ringround 입력해주세요')
-      }
-      if (!ringsize) {
-        return alert('ringsize 입력해주세요')
-      }
-      let store = getObjectStore(DB_STORE_NAME, 'readwrite');
-      let req
-      const obj = {
-        ringround: ringround,
-        ringsize: ringsize
-      };
-
-      try {
-        req = store.add(obj);
-      } catch (e) { }
-
-      req.onsuccess = function (evt) {
-        console.log("입력 되었습니다.");
-      };
-      req.onerror = function () {
-        console.error(this.error);
-      };
-
-    }, false);
 
   </script>
 </body>
