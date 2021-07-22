@@ -1,6 +1,8 @@
 # Ring-Fit
-## System Architecture
+# System Architecture
 ![system_architecture_0721](https://user-images.githubusercontent.com/80808856/126721087-b2166c10-d652-4e4b-b224-be1464ecc7e5.png)
+
+<br>
 
 ## **Git convention**
 ### 1. process
