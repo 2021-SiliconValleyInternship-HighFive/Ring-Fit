@@ -1,13 +1,32 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Button } from 'react-bootstrap';
 import Loading from '../components/Loading';
 import '../components/result.css'
 
 function Result() {
-  const [user, setUser] = useState({round: 0, size: 0});
+  const [user, setUser] = useState({round: 10, size: 10});
   const [loading, setLoading] = useState(false);
+
+  const onSubmit = () => {
+    const store = getObjectStore(DB_STORE_NAME, 'readwrite');
+    let req;
+    const obj = {
+      ringround: user.round,
+      ringsize: user.size
+    };
+
+    try {
+      req = store.add(obj);
+    } catch (e) { }
+
+    req.onsuccess = function () {
+      console.log("입력 되었습니다.");
+    };
+    req.onerror = function (err) {
+      console.error(err);
+    };
+  }
 
   useEffect(() => {
     const fetchUser = async() => {
@@ -45,9 +64,8 @@ function Result() {
         </div>
   
       </div>
-      <Link to="/" >
 <div style={{ textAlign:'center',}}>
-        <Button 
+        <Button onClick={onSubmit}
       style={{borderRadius: '10px', 
       borderColor:'Black',
       backgroundColor:'Black',
@@ -55,7 +73,6 @@ function Result() {
       fontSize: '13px'}}>
       SAVE</Button>{' '}
       </div>
-      </Link>
     </div>
   );
 }
