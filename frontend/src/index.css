@@ -11,10 +11,40 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-@font-face {
-  font-family: "cookie";
-  src: url("./font/Cookie.ttf");
+
+.header {
+  text-align: center;
+  font-family: 'ariblk';
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 100vw;
+  font-size: 1.3rem;
 }
+
+.guideImg {
+  display: block;
+  margin: 0px auto;
+  width: 70%;
+}
+
+.guideNum {
+  font-family: 'ariblk';
+  font-size: 1.3rem;
+  padding-left: 2em;
+  margin-top:1em;
+  margin-bottom: 0.5em;
+}
+
+.guideText {
+
+    font-family: "OpenSans-Regular";
+    text-align: center;
+    width: 100vw;
+    font-size: 14px;
+
+
+}
+
 @font-face {
   font-family: "ariblk";
   src: url("./font/ariblk.ttf");
