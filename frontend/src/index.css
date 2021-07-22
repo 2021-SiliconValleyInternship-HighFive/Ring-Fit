@@ -41,9 +41,18 @@ code {
     text-align: center;
     width: 100vw;
     font-size: 14px;
-
-
 }
+
+.startBtn {
+  text-align: right;
+  color: black;
+  font-family: 'ariblk';
+  font-size: 14.0pt;
+  font-style: normal;
+  font-weight: 400;
+  margin:1em;
+}
+
 
 @font-face {
   font-family: "ariblk";

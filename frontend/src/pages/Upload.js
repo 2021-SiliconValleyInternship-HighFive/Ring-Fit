@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Resizer from "react-image-file-resizer";
 import tempPreview from "../images/uploadPreview.PNG";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 
 function Upload() {
   const [image, setImage] = useState(null);
@@ -13,7 +13,7 @@ function Upload() {
   const imgStyle = {
     width: "80%",
     height: "80%",
-    marginBottom: "60px"
+    marginBottom: "60px",
   };
 
   /* resize image func: 513 * 513 크기로 base64형식 이미지 리턴 */
@@ -53,13 +53,7 @@ function Upload() {
 
   return (
     <div>
-      <h1 style={{ fontFamily: 'cookie',
-      width: '100vw' ,
-      textAlign:'center',
-      fontFamily:'ariblk',
-      marginTop: '40px',
-      fontSize: '21px'}}>
-        UPLOAD</h1>
+      <div className="header">UPLOAD</div>
 
       <input
         type="file"
@@ -69,34 +63,38 @@ function Upload() {
         style={{ display: "none" }}
       />
 
-      <label style={{textAlign:'center',
-      width: '100vw',
-      marginTop: '75px'}} htmlFor="upload-image">
-      <img className="uploadImage" src={preview} style={imgStyle} />
+      <label
+        style={{ textAlign: "center", width: "100vw", marginTop: "40px" }}
+        htmlFor="upload-image"
+      >
+        <img className="uploadImage" src={preview} style={imgStyle} />
       </label>
 
-      <div style={{textAlign:'center',paddingBottom: '33px'}}>
-            <h style={{fontFamily: 'OpenSans-Regular',
-            textAlign:'center',
-            width: '100vw',
-            fontSize: "14px",
-            }}>
-                Take a picture with your finger clearly<br></br>visible on a black background. And put a<br></br>coin on the left. Finally, select and upload a<br></br>photo that meets these criteria.</h>
-                </div>
-      <br></br>
-
-      <div style={{ textAlign:'center',}}>
-      <Button onClick={onClick} variant="outline-secondary"
-      style={{ borderRadius: '50%',
-      borderWidth: '3px',
-      borderColor:'black',
-      color:'black',
-      fontFamily:'ariblk',
-      paddingRight: '20px',
-      paddingLeft:'20px'}}
-      >select</Button>
+      <div style={{ textAlign: "center", paddingBottom: "33px" }}>
+        <div className="guideText">
+          Take a picture with your finger clearly<br></br>visible on a
+          background. And put a<br></br>coin on the left. Finally, select and
+          upload a<br></br>photo that meets these criteria.
+        </div>
       </div>
-      
+      <div style={{ textAlign: "center" }}>
+        <Button
+          className="selectBtn"
+          onClick={onClick}
+          variant="outline-secondary"
+          style={{
+            borderRadius: "50%",
+            borderWidth: "3px",
+            borderColor: "black",
+            color: "black",
+            fontFamily: "ariblk",
+            paddingRight: "20px",
+            paddingLeft: "20px",
+          }}
+        >
+          select
+        </Button>
+      </div>
     </div>
   );
 }

@@ -29,11 +29,7 @@ function Result() {
     <div>
       <div className="result">
 
-      <div style={{ fontFamily: 'ariblk',
-      width: '100vw' ,
-      textAlign:'center',
-      marginTop: '35px',
-      fontSize: '20px'}}>
+      <div className="header">
         RING SIZE</div>
       
         <div class="center" >
@@ -61,7 +57,5 @@ function Result() {
 }
 
 export default Result;
-
-
 
 
