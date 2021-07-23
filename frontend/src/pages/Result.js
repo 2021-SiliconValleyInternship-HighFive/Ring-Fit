@@ -6,11 +6,10 @@ import NamePicker from "../components/NamePicker";
 import "../css/result.css";
 import { Button } from "react-bootstrap";
 
-
 function Result() {
   const history = useHistory();
 
-   //배열에 usestat를 통해 얻은 컴포넌트에서 값을 넣는다.
+  /* user data  -- 배열에 usestat를 통해 얻은 컴포넌트에서 값을 넣는다. */
   const [user, setUser] = useState({
     //초기값
     round: 0,
@@ -19,11 +18,11 @@ function Result() {
     finger: "Middle",
     position: "FIRST",
   });
+
   const [loading, setLoading] = useState(false);
   const [modalOn, setModalOn] = useState(false);
 
-
-  //onsubmit이 event가 발생하면 데이터를 저장하게 동작시킨다. 
+  /* store user data to indexedDB -- onsubmit이 event가 발생하면 데이터를 저장하게 동작시킨다. */
   const onSubmit = () => {
     const store = getObjectStore(DB_STORE_NAME, "readwrite");
     let req;
@@ -41,19 +40,20 @@ function Result() {
     req.onerror = function (err) {
       console.error(err);
     };
-    // user 페이지 이동
-    history.push("/user")
+    history.push("/user"); // user 페이지 이동
   };
 
+  /* Modal on or off */
   const onModalOn = () => {
     setModalOn(!modalOn);
   };
-
+  /* set user data in Modal */
   const onChangeUser = (name, value) => {
     setUser({ ...user, [name]: value });
   };
 
   useEffect(() => {
+    /* API function -- get ring data */
     const fetchUser = async () => {
       try {
         setLoading(true);
@@ -84,18 +84,7 @@ function Result() {
   return (
     <div>
       <div className="result">
-        <h2>{user.LorR} {user.finger} {user.position}</h2> {/* 테스트용 */}
-        <div
-          style={{
-            fontFamily: "ariblk",
-            width: "100vw",
-            textAlign: "center",
-            marginTop: "35px",
-            fontSize: "20px",
-          }}
-        >
-          RING SIZE
-        </div>
+        <div className="text">RING SIZE</div>
 
         <div className="center">
           <span>
@@ -106,28 +95,32 @@ function Result() {
         </div>
       </div>
       <div style={{ textAlign: "center" }}>
-        <Button className="saveBtn"
+        <Button
           onClick={onModalOn}
-          style={btnStyle}
+          style={modalOn ? { display: "none" } : btnStyle}
         >
-          SAVE
+          save
         </Button>
       </div>
-
-
 
       {/* Modal */}
       <div className={modalOn ? "openModal modal" : "modal"}>
         {modalOn ? (
-          <div>
-            <button className="close" onClick={onModalOn}>
-              X
-            </button>
-            
-            <NamePicker onChangeUser={onChangeUser} />
-            <Button className="saveBtn"
-            onClick={onSubmit} style={btnStyle}>OK</Button>
-          </div>
+          <section>
+            <header>
+              {" "}
+              <button className="closeBtn" onClick={onModalOn}>
+                &times;
+              </button>
+            </header>
+            <main>
+              {" "}
+              <NamePicker onChangeUser={onChangeUser} />
+            </main>
+            <footer>
+              <button onClick={onSubmit}>&nbsp;OK&nbsp;</button>
+            </footer>
+          </section>
         ) : null}
       </div>
     </div>
