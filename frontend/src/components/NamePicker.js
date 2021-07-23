@@ -7,14 +7,14 @@ export default class NamePicker extends Component {
     super(props);
     this.state = {
       valueGroups: {
-        title: 'LEFT',
-        firstName: 'Middle',
-        secondName: 'FIRST'
+        LorR: 'LEFT',
+        finger: 'Middle',
+        position: 'FIRST'
       }, 
       optionGroups: {
-        title: ['LEFT', 'RIGHT'],
-        firstName: ['Thumb', 'Index', 'Middle', 'Ring', ' Pinky'],
-        secondName: ['FIRST', 'SECOND']
+        LorR: ['LEFT', 'RIGHT'],
+        finger: ['Thumb', 'Index', 'Middle', 'Ring', ' Pinky'],
+        position: ['FIRST', 'SECOND']
       }
     };
   }
@@ -26,21 +26,22 @@ export default class NamePicker extends Component {
         [name]: value
       }
     }));
+    console.log(name, value);
+    this.props.onChangeUser(name, value)
   };
+
 
   render() {
     const {optionGroups, valueGroups} = this.state;
-
     return (
       <div className="example-container">
-        
-   
-        
+
+        <button onClick={this.props.onChangeUser}> test </button>
         
           <Picker
             optionGroups={optionGroups}
-            valueGroups={valueGroups}
-            onChange={this.handleChange} />
+            valueGroups={valueGroups} 
+            onChange={this.handleChange}/>
         
       </div>
     );

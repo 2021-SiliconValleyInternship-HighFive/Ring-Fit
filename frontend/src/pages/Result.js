@@ -1,13 +1,19 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useReducer } from "react";
 import { Button } from "react-bootstrap";
 import Loading from "../components/Loading";
 import "../css/result.css";
-import PropTypes from 'prop-types';
-import NamePicker from '../components/NamePicker';
+import PropTypes from "prop-types";
+import NamePicker from "../components/NamePicker";
 
 function Result() {
-  const [user, setUser] = useState({ round: 0, size: 0 });
+  const [user, setUser] = useState({
+    round: 0,
+    size: 0,
+    LorR: "LEFT",
+    finger: "Middle",
+    position: "FIRST",
+  });
   const [loading, setLoading] = useState(false);
   const [modalOn, setModalOn] = useState(false);
 
@@ -17,6 +23,9 @@ function Result() {
     const obj = {
       ringround: user.round,
       ringsize: user.size,
+      LorR: user.LorR,
+      finger: user.finger,
+      position: user.position
     };
 
     try {
@@ -33,6 +42,10 @@ function Result() {
 
   const onModalOn = () => {
     setModalOn(!modalOn);
+  };
+
+  const onChangeUser = (name, value) => {
+    setUser({ ...user, [name]: value });
   };
 
   useEffect(() => {
@@ -57,6 +70,7 @@ function Result() {
   return (
     <div>
       <div className="result">
+        <h2>{user.LorR} {user.finger} {user.position}</h2>
         <div
           style={{
             fontFamily: "ariblk",
@@ -69,7 +83,7 @@ function Result() {
           RING SIZE
         </div>
 
-        <div class="center">
+        <div className="center">
           <span>
             round&nbsp;&nbsp;{user.round}
             <p></p>
@@ -92,6 +106,9 @@ function Result() {
         </Button>{" "}
       </div>
 
+      {/* 임시 버튼 */}
+      <button onClick={onSubmit}>submit</button>
+
       {/* Modal */}
       <div className={modalOn ? "openModal modal" : "modal"}>
         {modalOn ? (
@@ -99,7 +116,7 @@ function Result() {
             <button className="close" onClick={onModalOn}>
               X
             </button>
-            <NamePicker />
+            <NamePicker onChangeUser={onChangeUser} />
           </div>
         ) : null}
       </div>
