@@ -1,13 +1,14 @@
 import axios from "axios";
-import React, { useState, useEffect, useReducer } from "react";
-import { Button } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import Loading from "../components/Loading";
-import "../css/result.css";
-import PropTypes from "prop-types";
 import NamePicker from "../components/NamePicker";
+import "../css/result.css";
+import { Button } from "react-bootstrap";
+
 
 function Result() {
-
+  const history = useHistory();
 
    //배열에 usestat를 통해 얻은 컴포넌트에서 값을 넣는다.
   const [user, setUser] = useState({
@@ -26,28 +27,22 @@ function Result() {
   const onSubmit = () => {
     const store = getObjectStore(DB_STORE_NAME, "readwrite");
     let req;
-    const obj = {
-      ringround: user.round,
-      ringsize: user.size,
-      LorR: user.LorR,
-      finger: user.finger,
-      position: user.position
-    };
-
+    const obj = user;
 
     //위의 데이터 저장처리에서 indexeddb가 비동기이기 때문에 trycatch로 동작확인.
     try {
       req = store.add(obj);
     } catch (e) {}
 
-
-    //
     req.onsuccess = function () {
       console.log("입력 되었습니다.");
     };
+
     req.onerror = function (err) {
       console.error(err);
     };
+    // user 페이지 이동
+    history.push("/user")
   };
 
   const onModalOn = () => {
@@ -65,22 +60,31 @@ function Result() {
         const url = "http://localhost:8000/api/result";
         const response = await axios.get(url);
         setUser({
-          round: response.data.cirumference,
+          round: response.data.circumference,
           size: response.data.size,
         });
       } catch (e) {
-        console.log(e);
+        console.log("API Err: ", e);
       }
       setLoading(false);
     };
     fetchUser();
   }, []);
 
+  const btnStyle = {
+    borderRadius: "10px",
+    borderColor: "Black",
+    backgroundColor: "Black",
+    fontFamily: "ariblk",
+    fontSize: "13px",
+  };
+
   if (loading) return <Loading />;
+
   return (
     <div>
       <div className="result">
-        <h2>{user.LorR} {user.finger} {user.position}</h2>
+        <h2>{user.LorR} {user.finger} {user.position}</h2> {/* 테스트용 */}
         <div
           style={{
             fontFamily: "ariblk",
@@ -102,21 +106,15 @@ function Result() {
         </div>
       </div>
       <div style={{ textAlign: "center" }}>
-        <Button
+        <Button className="saveBtn"
           onClick={onModalOn}
-          style={{
-            borderRadius: "10px",
-            borderColor: "Black",
-            backgroundColor: "Black",
-            fontFamily: "ariblk",
-            fontSize: "13px",
-          }}
+          style={btnStyle}
         >
           SAVE
-        </Button>{" "}
+        </Button>
       </div>
 
-      
+
 
       {/* Modal */}
       <div className={modalOn ? "openModal modal" : "modal"}>
@@ -127,13 +125,8 @@ function Result() {
             </button>
             
             <NamePicker onChangeUser={onChangeUser} />
-            <Button onClick={onSubmit}style={{
-            borderRadius: "10px",
-            borderColor: "Black",
-            backgroundColor: "Black",
-            fontFamily: "ariblk",
-            fontSize: "13px",
-          }}>submit</Button>
+            <Button className="saveBtn"
+            onClick={onSubmit} style={btnStyle}>OK</Button>
           </div>
         ) : null}
       </div>
