@@ -29,23 +29,15 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
 
-
-
   <script>
-
     const DATABASE = 'MyDatabase';
     const DB_VERSION = 1;
     const DB_STORE_NAME = 'USER RING information';
 
-    // Touch DB Factory to make sure, it is properly initialized even on iOS 14.6
-    const awake = window.indexedDB;
-    
     var db;
-
     openDB = () => {
 
       var req = indexedDB.open(DATABASE, DB_VERSION);
-
 
       req.onsuccess = function (evt) {
         db = this.result;
@@ -80,9 +72,6 @@
     });
 
     //const db;
-
-
-
 
   </script>
 </body>
