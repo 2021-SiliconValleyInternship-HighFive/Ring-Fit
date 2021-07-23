@@ -3,6 +3,7 @@ import Guide from './pages/Guide';
 import Upload from './pages/Upload';
 import Measure from './pages/Measure';
 import Result from './pages/Result';
+import User from './pages/User';
 
 export default [
     {
@@ -24,5 +25,9 @@ export default [
     {
         page : '/result',
         component : Result
+    },
+    {
+        page : '/user',
+        component : User
     },
 ]
