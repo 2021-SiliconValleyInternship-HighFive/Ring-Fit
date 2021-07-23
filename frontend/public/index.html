@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#FFFFFF" />
-    <meta name="description" content="Web site created using create-react-app" />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#000000" />
+  <meta name="description" content="Web site created using create-react-app" />
+  <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+  <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
       Only files inside the `public` folder can be referenced from the HTML.
@@ -21,25 +22,54 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Ring Fit</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', function() {
-          navigator.serviceWorker.register('./service worker.js').then(function(registration) {
-            console.log('Worker registration successful', registration.scope);
-          }, function(err) {
-            console.log('Worker registration failed', err);
-          }).catch(function(err) {
-            console.log(err);
-          });
-        });
-      } else {
-        console.log('Service Worker is not supported by browser.');
-      }
-</script>
-  </body>
+  <title>React App</title>
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+
+  
+
+  <script>
+
+    const DATABASE = 'MyDatabase';
+    const DB_VERSION = 1;
+    const DB_STORE_NAME = 'USER RING information';
+
+    var db;
+
+    openDB = () => {
+
+      var req = indexedDB.open(DATABASE, DB_VERSION);
+
+
+      req.onsuccess = function (evt) {
+        db = this.result;
+      };
+
+      req.onerror = function (evt) {
+        console.error("indexedDB : ", evt.target.errorCode);
+      };
+
+      req.onupgradeneeded = function (evt) {
+        console.log("indexedDB.onupgradeneeded");
+        var store = evt.currentTarget.result.createObjectStore(DB_STORE_NAME,
+          { keyPath: 'id', autoIncrement: true });
+
+        store.createIndex('biblioid', 'biblioid', { unique: true });
+        store.createIndex('title', 'title', { unique: false });
+        store.createIndex('year', 'year', { unique: false });
+      };
+    }
+
+    openDB()
+
+    getObjectStore = (store_name, mode) => {
+      return db.transaction(store_name, mode).objectStore(store_name);
+    }
+
+  </script>
+</body>
+
 </html>
