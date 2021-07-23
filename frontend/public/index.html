@@ -80,11 +80,9 @@
         const db = event.target.result;
     });
     
-    const db;
+    //const db;
 
-    const request = window.indexedDB.open('notes_db', 1); 
-    request.onerror = function() { alert("sorry") };
-    request.onsuccess = function() { db = request.result;  };
+
 
     
   </script>
