@@ -56,6 +56,7 @@ function Measure() {
       })
       .catch((err) => {
         console.log(err);
+        history.push("/result"); // 테스트용 - api 연동 실패해도 페이지 넘어가도록
       });
   };
 
