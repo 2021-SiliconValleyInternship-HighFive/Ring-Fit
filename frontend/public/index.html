@@ -69,6 +69,24 @@
       return db.transaction(store_name, mode).objectStore(store_name);
     }
 
+    request.addEventListener('upgradeneeded', event => {
+        const db = event.target.result;
+        const noteStore = db.createObjectStore('notes_os', { keyPath: 'id', autoIncrement:true });
+        noteStore.createIndex('title', 'title', { unique: false }); noteStore.createIndex('body', 'body', { unique: false });
+    });
+
+    const request = window.indexedDB.open('notes_db', 2);
+    request.addEventListener('upgradeneeded', event => {
+        const db = event.target.result;
+    });
+    
+    const db;
+
+    const request = window.indexedDB.open('notes_db', 1); 
+    request.onerror = function() { alert("sorry") };
+    request.onsuccess = function() { db = request.result;  };
+
+    
   </script>
 </body>
 
