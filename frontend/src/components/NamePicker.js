@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import Picker from 'react-mobile-picker';
 
 export default class NamePicker extends Component {
@@ -9,12 +8,12 @@ export default class NamePicker extends Component {
       valueGroups: {
         LorR: 'LEFT',
         finger: 'Middle',
-        position: 'FIRST'
+        position: 'MIDI'
       }, 
       optionGroups: {
         LorR: ['LEFT', 'RIGHT'],
         finger: ['Thumb', 'Index', 'Middle', 'Ring', ' Pinky'],
-        position: ['FIRST', 'SECOND']
+        position: ['MIDI', 'BOTTOM']
       }
     };
   }
@@ -35,9 +34,7 @@ export default class NamePicker extends Component {
     const {optionGroups, valueGroups} = this.state;
     return (
       <div className="example-container">
-
-        <button onClick={this.props.onChangeUser}> test </button>
-        
+                
           <Picker
             optionGroups={optionGroups}
             valueGroups={valueGroups} 

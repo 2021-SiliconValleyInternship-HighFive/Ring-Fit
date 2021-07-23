@@ -16,7 +16,7 @@ function Result() {
     size: 0,
     LorR: "LEFT",
     finger: "Middle",
-    position: "FIRST",
+    position: "MIDI",
   });
 
   const [loading, setLoading] = useState(false);
