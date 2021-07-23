@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import Loading from "../components/Loading";
 import "../css/result.css";
 import PropTypes from 'prop-types';
-import NamePicker from '../NamePicker';
+import NamePicker from '../components/NamePicker';
 
 function Result() {
   const [user, setUser] = useState({ round: 0, size: 0 });
