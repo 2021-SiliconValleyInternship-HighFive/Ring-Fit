@@ -7,6 +7,8 @@ function User() {
         /* indexedDB에서 user data 불러오기 */
         const store = getObjectStore(DB_STORE_NAME, "readonly");
         let req = store.getAll();
+
+
         req.onsuccess=(e)=>{
             setUsers(e.target.result);
         }
@@ -14,6 +16,7 @@ function User() {
             console.log("getAllError: ",err);
         }
     },[])
+
     return(
         <div>            
             {users.map((user) => {
@@ -24,5 +27,6 @@ function User() {
         </div>
     );
 };
+
 
 export default User;

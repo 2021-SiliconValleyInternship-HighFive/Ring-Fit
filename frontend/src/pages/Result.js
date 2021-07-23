@@ -7,7 +7,11 @@ import PropTypes from "prop-types";
 import NamePicker from "../components/NamePicker";
 
 function Result() {
+
+
+   //배열에 usestat를 통해 얻은 컴포넌트에서 값을 넣는다.
   const [user, setUser] = useState({
+    //초기값
     round: 0,
     size: 0,
     LorR: "LEFT",
@@ -17,6 +21,8 @@ function Result() {
   const [loading, setLoading] = useState(false);
   const [modalOn, setModalOn] = useState(false);
 
+
+  //onsubmit이 event가 발생하면 데이터를 저장하게 동작시킨다. 
   const onSubmit = () => {
     const store = getObjectStore(DB_STORE_NAME, "readwrite");
     let req;
@@ -28,10 +34,14 @@ function Result() {
       position: user.position
     };
 
+
+    //위의 데이터 저장처리에서 indexeddb가 비동기이기 때문에 trycatch로 동작확인.
     try {
       req = store.add(obj);
     } catch (e) {}
 
+
+    //
     req.onsuccess = function () {
       console.log("입력 되었습니다.");
     };
@@ -106,8 +116,7 @@ function Result() {
         </Button>{" "}
       </div>
 
-      {/* 임시 버튼 */}
-      <button onClick={onSubmit}>submit</button>
+      
 
       {/* Modal */}
       <div className={modalOn ? "openModal modal" : "modal"}>
@@ -116,7 +125,15 @@ function Result() {
             <button className="close" onClick={onModalOn}>
               X
             </button>
+            
             <NamePicker onChangeUser={onChangeUser} />
+            <Button onClick={onSubmit}style={{
+            borderRadius: "10px",
+            borderColor: "Black",
+            backgroundColor: "Black",
+            fontFamily: "ariblk",
+            fontSize: "13px",
+          }}>submit</Button>
           </div>
         ) : null}
       </div>
