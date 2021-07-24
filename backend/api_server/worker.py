@@ -13,3 +13,7 @@ app = Celery('tasks', backend='redis://localhost', broker='pyamqp://guest:guest@
 def init_worker(**kwargs):
 	print('init')
 
+# 종료
+@worker_shutdown.connect
+def shutdown_worker(**kwargs):
+	print('shut')
