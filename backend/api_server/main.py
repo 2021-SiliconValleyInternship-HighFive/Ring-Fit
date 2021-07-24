@@ -58,19 +58,6 @@ class Size(BaseModel):
     size: int
 
 
-# # x, y값 API
-# # content-type: application/json
-# @app.post('/api/x-y-value')
-# async def find_value(value: Value):
-#     return value                         
-
-# # resized 이미지 파일 API
-# # content-type: multipart/form-data
-# @app.post('/api/resized-file')
-# async def send_resized_file(file: UploadFile = File(...)):
-#     return {"filename" : file.filename}  
-
-
 
 # 데이터 전송 API
 # content-type: multipart/form-data
