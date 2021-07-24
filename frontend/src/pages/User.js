@@ -1,4 +1,6 @@
 import React, { useState, useEffect} from 'react';
+import Table from "react-bootstrap/Table"
+import { Button } from "react-bootstrap";
 
 function User() {
     const [users, setUsers] = useState([]);
@@ -25,19 +27,50 @@ function User() {
         req.onerror = (err) => {
             console.log("DATABASE ERROR: ",err);
         }
-    }
+    } 
 
     return(
-        <div>            
+        
+        <div>
+            <div className="headerUser"
+            >user</div>            
             {users.map((user) => {
                 return(
                     <div>
-                  <p key={user.id}>{user.LorR} {user.finger} {user.position} round: {user.round}mm size: {user.size}</p>
-                  <button onClick={() => {onRemove(user.id)}}>DELETE</button>
-                  </div>
-                );
-            })}
-        </div>
+
+
+<Table striped bordered hover variant="dark">
+    <thead>
+    <tr>
+      {/* <th>id</th> */}
+    <th>LorR</th>
+    <th>finger</th>
+    <th>position</th>
+    <th>round</th>
+    <th>size</th>
+    </tr>
+    </thead>
+        <tbody>
+    <tr>
+      {/* <td>key={user.id}</td> */}
+    <td>{user.LorR}</td>
+    <td>{user.finger}</td>
+    <td>{user.position}</td>
+    <td>{user.round}mm</td>
+    <td>{user.size}</td>
+    </tr>
+    
+        </tbody>
+</Table>
+<Button style={{marginBottom: '10px'}} variant="secondary"
+onClick={() => {onRemove(user.id)}}>DELETE</Button>
+
+    {/* <p key={user.id}>{user.LorR} {user.finger} {user.position} round: {user.round}mm size: {user.size}</p>
+    <button onClick={() => {onRemove(user.id)}}>DELETE</button> */}
+    </div>
+    );
+    })}
+    </div>
     );
 };
 
