@@ -39,7 +39,7 @@ function User() {
                     <div>
 
 
-<Table striped bordered hover variant="dark">
+<Table responsive>
     <thead>
     <tr>
       {/* <th>id</th> */}
@@ -62,7 +62,7 @@ function User() {
     
         </tbody>
 </Table>
-<Button style={{marginBottom: '10px'}} variant="secondary"
+<Button variant="light" style={{marginBottom: '10px' }} 
 onClick={() => {onRemove(user.id)}}>DELETE</Button>
 
     {/* <p key={user.id}>{user.LorR} {user.finger} {user.position} round: {user.round}mm size: {user.size}</p>
