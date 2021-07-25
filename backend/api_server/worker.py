@@ -1,12 +1,18 @@
+# Defines the celery app instance and associated config
+
 from celery import Celery
 from celery.signals import worker_init
 from celery.signals import worker_shutdown
 from celery.bin.celery import result
 
-# Settings
+# Config
 # RabbitMQ as the message broker, Redis as the result backend
 # guest == Default queue
-app = Celery('tasks', backend='redis://localhost:6379/0', broker='pyamqp://guest:guest@localhost:5672//')
+BROKER_URL = 'pyamqp://guest:guest@localhost:5672//'
+BACKEND_URL = 'redis://localhost:6379/0'
+
+# Create Instance
+app = Celery('tasks', backend=BACKEND_URL, broker=BROKER_URL)
 
 # 초기화
 @worker_init.connect
@@ -17,3 +23,6 @@ def init_worker(**kwargs):
 @worker_shutdown.connect
 def shutdown_worker(**kwargs):
 	print('shut')
+
+#9:59
+result.get()
