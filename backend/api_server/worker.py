@@ -12,17 +12,17 @@ BROKER_URL = 'pyamqp://guest:guest@localhost:5672//'
 BACKEND_URL = 'redis://localhost:6379/0'
 
 # Create Instance
-app = Celery('tasks', backend=BACKEND_URL, broker=BROKER_URL)
+app = Celery('tasks', backend=BACKEND_URL, broker=BROKER_URL, include=['tasks'])
 
-# 초기화
-@worker_init.connect
-def init_worker(**kwargs):
-	print('init')
+# # 초기화
+# @worker_init.connect
+# def init_worker(**kwargs):
+# 	print('init')
 
-# 종료
-@worker_shutdown.connect
-def shutdown_worker(**kwargs):
-	print('shut')
+# # 종료
+# @worker_shutdown.connect
+# def shutdown_worker(**kwargs):
+# 	print('shut')
 
-#9:59
-result.get()
+
+# result.get()
