@@ -1,6 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import Table from "react-bootstrap/Table"
 import { Button } from "react-bootstrap";
+import "../css/user.css";
+
 
 function User() {
     const [users, setUsers] = useState([]);
@@ -36,8 +38,8 @@ function User() {
             >user</div>            
             {users.map((user) => {
                 return(
-                    <div>
-
+                    <div class="wrapper"> 
+<div class="user-maching">
 
 <Table responsive>
     <thead>
@@ -67,6 +69,12 @@ onClick={() => {onRemove(user.id)}}>DELETE</Button>
 
     {/* <p key={user.id}>{user.LorR} {user.finger} {user.position} round: {user.round}mm size: {user.size}</p>
     <button onClick={() => {onRemove(user.id)}}>DELETE</button> */}
+
+</div>
+<div class="user-maching">
+hiasdfasdfwefasdfawefasdfwefsadfwefasdf
+
+</div>
     </div>
     );
     })}
