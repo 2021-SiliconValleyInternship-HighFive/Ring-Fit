@@ -2,7 +2,7 @@ import React, { useState, useEffect} from 'react';
 import Table from "react-bootstrap/Table"
 import { Button } from "react-bootstrap";
 import "../css/user.css";
-
+import { Link } from "react-router-dom";
 
 function User() {
     const [users, setUsers] = useState([]);
@@ -35,7 +35,9 @@ function User() {
         
         <div>
             <div className="headerUser"
-            >user</div>            
+            >user       <Link to="/upload" style={{ textDecoration: "none" }}>
+            <Button variant="light" style={{marginBottom: '10px' }} > ADD</Button>
+            </Link>   </div>            
             {users.map((user) => {
                 return(
                     <div class="wrapper"> 
@@ -72,7 +74,7 @@ onClick={() => {onRemove(user.id)}}>DELETE</Button>
 
 </div>
 <div class="user-maching">
-hiasdfasdfwefasdfawefasdfwefsadfwefasdf
+shop
 
 </div>
     </div>
