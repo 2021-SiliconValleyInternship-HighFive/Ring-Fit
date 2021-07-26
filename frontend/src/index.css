@@ -47,7 +47,7 @@ code {
 }
 .titleText1 {
   position: absolute;
-  
+  left: 70%;
   top: 90%;
   left: 70%;
   transform: translate(-50%, -50%);
@@ -82,6 +82,16 @@ code {
   
   color: white;
   background-color:black;
+}
+.plus{
+  top: 0.8%;
+  position: absolute;
+  left: 90%;
+  font-size: 2rem;
+  text-align: center;
+  font-family: 'ariblk';
+  color: white;
+  
 }
 .guideImg {
   display: block;

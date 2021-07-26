@@ -35,9 +35,9 @@ function User() {
         
         <div>
             <div className="headerUser"
-            >user       <Link to="/upload" style={{ textDecoration: "none" }}>
-            <Button variant="light" style={{marginBottom: '10px' }} > ADD</Button>
-            </Link>   </div>            
+            >user       </div>    <Link to="/upload" style={{ textDecoration: "none" }}className="plus">
+            +
+            </Link>           
             {users.map((user) => {
                 return(
                     <div class="wrapper"> 
