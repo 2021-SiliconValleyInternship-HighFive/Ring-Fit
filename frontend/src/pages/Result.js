@@ -8,7 +8,6 @@ import { Button } from "react-bootstrap";
 
 function Result() {
   const history = useHistory();
-
   /* user data  -- 배열에 usestat를 통해 얻은 컴포넌트에서 값을 넣는다. */
   const [user, setUser] = useState({
     //초기값
@@ -18,9 +17,23 @@ function Result() {
     finger: "Middle",
     position: "MIDI",
   });
-
   const [loading, setLoading] = useState(false);
   const [modalOn, setModalOn] = useState(false);
+   /* API function -- get ring data */
+   const fetchUser = async () => {
+    try {
+      setLoading(true);
+      const url = "http://localhost:8000/api/result";
+      const response = await axios.get(url);
+      setUser({
+        round: response.data.circumference,
+        size: response.data.size,
+      });
+    } catch (e) {
+      console.log("API Err: ", e);
+    }
+    setLoading(false);
+  };
 
   /* store user data to indexedDB -- onsubmit이 event가 발생하면 데이터를 저장하게 동작시킨다. */
   const onSubmit = () => {
@@ -53,21 +66,7 @@ function Result() {
   };
 
   useEffect(() => {
-    /* API function -- get ring data */
-    const fetchUser = async () => {
-      try {
-        setLoading(true);
-        const url = "http://localhost:8000/api/result";
-        const response = await axios.get(url);
-        setUser({
-          round: response.data.circumference,
-          size: response.data.size,
-        });
-      } catch (e) {
-        console.log("API Err: ", e);
-      }
-      setLoading(false);
-    };
+   
     fetchUser();
   }, []);
 
