@@ -15,8 +15,8 @@ function Result() {
         setLoading(true);
         const url = "http://localhost:8000/api/result";
         const response =  await axios.get(url);
-        setUser({round: response.data.cirumference, size: response.data.size});
-        console.log("round: ",response.data.cirumference, "size: ",response.data.size);
+        setUser({round: response.data.circumference, size: response.data.size});
+        console.log("round: ",response.data.circumference, "size: ",response.data.size);
 
       }catch(e) {
         console.log(e);
