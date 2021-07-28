@@ -30,7 +30,7 @@ function Result() {
         size: response.data.size,
       });
     } catch (e) {
-      console.log("API Err: ", e);
+      console.log("API ERROR: ", e);
     }
     setLoading(false);
   };
