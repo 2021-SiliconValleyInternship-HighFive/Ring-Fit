@@ -67,7 +67,6 @@ function Result() {
   };
 
   useEffect(() => {
-   
     fetchUser();
   }, []);
 

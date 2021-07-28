@@ -14,7 +14,7 @@ from pydantic import BaseModel
 app = FastAPI()
 
 # Add CORS URLs 
-# Default Port - Nginx: 80, Flask : 5000
+# frontend: http://localhost
 origins = [
     "http://localhost"
 ]
@@ -43,9 +43,11 @@ class Size(BaseModel):
 
 # 데이터 전송 API
 # content-type: multipart/form-data
-@app.post('/api/data', status_code=201)
+@app.post('/api/data', status_code=201, tags=["User"])
 async def send_data(
-    x: int = Form(...), y: int = Form(...), file: UploadFile = File(...)
+    x: int = Form(...), 
+    y: int = Form(...), 
+    file: UploadFile = File(...)
 ):
     return {
         "x": x,
@@ -56,17 +58,11 @@ async def send_data(
 
 # 결괏값 반환 API
 # content-type: application/json
-@app.post('/api/result', status_code=201)
-async def return_result(result: Size):
-    return result
-
-
-# --------------- front 연동 테스트 --------------- #
-@app.get("/")
-async def read_root():
-    return {"message": "you're at API server"}
+@app.post('/api/result', status_code=200, tags=["User"], response_description="result successfully retrieved")
+async def return_result():
+    return { "circumference" : 56, "size" : 13 }
 
 
 
-# --------------- flask 연동 테스트 --------------- #
+
 
