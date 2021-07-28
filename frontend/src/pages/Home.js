@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function Home() {
   return (
     <div className="start-bg">
-    <div class="title" >RING FIT</div>
+    <div className="title" >RING FIT</div>
 
     <Link to="/guide" style={{ textDecoration: "none" }}>
       

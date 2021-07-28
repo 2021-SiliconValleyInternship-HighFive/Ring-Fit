@@ -17,7 +17,7 @@ function User() {
   //   } catch (e) {
   //     console.log("API ERROR: ", e);
   //   }
-  };
+  // };
   
   /* userdata 삭제 */
   const onRemove = (id) => {
