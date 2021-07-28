@@ -1,3 +1,10 @@
+.text {
+    font-family: "ariblk";
+    width: 100vw;
+    text-align: center;
+    margin-top: 35px;
+    font-size: 20px;
+}
 .center {text-align: center; 
     margin-top: 120px;
     margin-bottom: 80px;
@@ -18,3 +25,135 @@
     font-family: ariblk;
     font-size: 1.1rem;
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+.modal button {
+    outline: none;
+    cursor: pointer;
+    border: 0;
+}
+.modal > section {
+    width: 90%;
+    max-width: 450px;
+    margin:0 auto;
+    border-radius: .3rem;
+    background-color: #fff;
+    /* 팝업이 열릴때 스르륵 열리는 효과 */
+    animation: modal-show .3s;
+    overflow: hidden;
+}
+.modal > section > header {
+    position: relative;
+    text-align: right;
+}
+.modal > section > header button {
+    margin-top: 5px;
+    margin-right: 10px;
+    font-size: 24px;
+    color: #999;
+    background-color: transparent;
+}
+.modal > section > main {
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+.modal > section > footer {
+    text-align: center;
+}
+.modal > section > footer button {
+    padding: 6px 12px;
+    margin:10px;
+    color: #fff;
+    background-color: #393d41;
+    border-radius: 10px;
+    font-family: "ariblk";
+    font-size: 13px;
+}
+.modal.openModal {
+    display: flex;
+    align-items: center;
+    /* 팝업이 열릴때 스르륵 열리는 효과 */
+    animation: modal-bg-show .3s;
+}
+@keyframes modal-show {
+    from {
+        opacity: 0;
+        margin-top: -50px;
+    }
+    to {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+@keyframes modal-bg-show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/*
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 99;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.modal.openModal {
+
+    display: flex;
+    align-items: center;
+    width: 80%;
+    height: 45%;
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color: #fff;
+    animation: modal-bg-show .3s;
+
+}
+
+.modal closeBtn {
+    outline: none;
+    cursor: pointer;
+    border: 0;
+    
+}
+
+@keyframes modal-show {
+    from {
+        opacity: 0;
+        margin-top: -50px;
+    }
+    to {
+        opacity: 1;
+        margin-top: 0;
+    }
+}
+@keyframes modal-bg-show {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}*/

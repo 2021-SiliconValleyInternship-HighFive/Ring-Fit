@@ -36,13 +36,28 @@ code {
 .titleText {
   position: absolute;
   top: 90%;
-  left: 50%;
+  left: 30%;
   transform: translate(-50%, -50%);
   text-align:center;
   color:white;
   width: 100%;
   font-family: "OpenSans-Regular";
   font-size: 14px;
+  width:80px;
+}
+.titleText1 {
+  position: absolute;
+  left: 70%;
+  top: 90%;
+  left: 70%;
+  transform: translate(-50%, -50%);
+  text-align:center;
+  color:white;
+  width: 100%;
+  font-family: "OpenSans-Regular";
+  font-size: 14px;
+  width: 80px;
+
 }
 
 .header {
@@ -54,6 +69,30 @@ code {
   font-size: 1.3rem;
 }
 
+.headerUser {
+  text-align: center;
+  font-family: 'ariblk';
+  margin-top: 1em;
+  margin-bottom: 1em;
+  width: 100vw;
+  font-size: 1.3rem;
+  margin-top: 0px;
+  height: 60px;
+  padding-top: 14px;
+  
+  color: white;
+  background-color:black;
+}
+.plus{
+  top: 0.8%;
+  position: absolute;
+  left: 90%;
+  font-size: 2rem;
+  text-align: center;
+  font-family: 'ariblk';
+  color: white;
+  
+}
 .guideImg {
   display: block;
   margin: 0px auto;
@@ -86,6 +125,9 @@ code {
   margin:1em;
 }
 
+.delButton{
+
+}
 
 @font-face {
   font-family: "ariblk";

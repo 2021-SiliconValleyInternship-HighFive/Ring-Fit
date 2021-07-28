@@ -1,0 +1,19 @@
+.wrapper{
+    max-height: 190px;
+    border:1px solid #ddd;
+    display: flex;
+    overflow-x:auto;
+    max-height: 100px;
+
+}
+.wrapper::-webkit-scrollbar{
+    width:0;
+}
+
+.wrapper .user-maching{
+    min-width: 400px;
+    height:100px;
+    text-align: center;
+ 
+}
+
