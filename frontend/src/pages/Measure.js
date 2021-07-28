@@ -29,7 +29,7 @@ function Measure() {
   };
 
   /* 513 * 513 이미지 기준 좌표 계산 */
-  let trans = (a) => parseInt((513 * a) / window.innerWidth);
+  const trans = (a) => {return(parseInt((513 * a) / window.innerWidth))};
 
   /* post function (api 연동) */
   const handlePost = async () => {
