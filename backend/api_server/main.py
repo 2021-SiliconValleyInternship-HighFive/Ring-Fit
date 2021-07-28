@@ -36,7 +36,7 @@ APIs
 
 
 class Size(BaseModel):
-    cirumference: int
+    circumference: int
     size: int
 
 
@@ -58,7 +58,7 @@ async def send_data(
 
 # 결괏값 반환 API
 # content-type: application/json
-@app.post('/api/result', status_code=200, tags=["User"], response_description="result successfully retrieved")
+@app.get('/api/result', status_code=200, tags=["User"], response_description="result successfully retrieved")
 async def return_result():
     return { "circumference" : 56, "size" : 13 }
 
