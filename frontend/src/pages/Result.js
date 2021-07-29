@@ -29,7 +29,6 @@ function Result() {
         round: response.data.circumference,
         size: response.data.size,
       });
-      console.log("round: ",uesr.round, "size: ",user.size);
     } catch (e) {
       console.log("API ERROR: ", e);
     }
@@ -40,7 +39,7 @@ function Result() {
   const onSubmit = () => {
     const store = getObjectStore(DB_STORE_NAME, "readwrite");
     let req;
-    const obj = user;
+    const obj = {LorR:user.LorR, finger: user.finger, position: user.position, round: user.round, size: user.size};
 
     //위의 데이터 저장처리에서 indexeddb가 비동기이기 때문에 trycatch로 동작확인.
     try {
@@ -67,7 +66,8 @@ function Result() {
   };
 
   useEffect(() => {
-    fetchUser();
+   
+    // fetchUser();
   }, []);
 
   const btnStyle = {
