@@ -24,14 +24,8 @@
 ```
 
 ## :round_pushpin: Main Features
--1.
-<br>
--2.
-<br>
-.
-<br>
-.
-
+![main_feature_1](https://user-images.githubusercontent.com/80808856/127587592-000149a1-ceba-489e-b997-da9cdfd1dfb9.png)
+![main_feature_2](https://user-images.githubusercontent.com/80808856/127587604-1059cc70-449d-451d-a64b-b4b5a1ed9856.png)
 
 
 <br>
