@@ -3,9 +3,25 @@
 
 <br>
 
-## :computer: System Architecture
+## :computer: Architecture Diagram
 ![system_architecture_0729](https://user-images.githubusercontent.com/80808856/127507618-4b9f71a7-24d8-4630-a11d-258d250125b7.png)
+
 <br>
+
+## Tech Stack
+```
+- Frontend : React
+- API Server : FastAPI
+- AI model : Tensorflow, OpenCV, Colab
+- WSGI : Gunicorn
+- ASGI : Uvicorn
+- Web Server : Nginx
+- Deployment: Docker, AWS
+- Database: MongoDB
+- API Test : Postman
+- API Documentation : Swagger
+- Version Control : Git, Github, GitKraken
+```
 
 ## :round_pushpin: Main Features
 -1.
@@ -16,7 +32,7 @@
 <br>
 .
 
-(+캡처화면/GIF)
+
 
 <br>
 
