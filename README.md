@@ -38,6 +38,6 @@
 
 ## :raised_hand_with_fingers_splayed: Team HighFive
 | 신유은 | 고원준 | 고주은 | 오현택 | 이정은 | 장이제 |
-| :----: | :----: | :----: |:----: | :----: |
+| :----: | :----: | :----: |:----: | :----: | :----: |
 | [@youeunss](https://github.com/youeunss) | [@KoneJ](https://github.com/KoneJ) | [@0ju-un](https://github.com/0ju-un) |[@hyeontack5](https://github.com/hyeontack5) |[@leejeongeu](https://github.com/leejeongeu) | [@yds04312](https://github.com/yds04312) |
 | BACKEND, DEVOPS | FRONTEND | FRONTEND | BACKEND, DEVOPS | ALGORITHM, FRONTEND | ALGORITHM |
