@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Slide from "../components/Slide";
+import "../css/bar.css";
 
 function Guide() {
   return (
@@ -10,8 +11,10 @@ function Guide() {
       <p></p>
       <p></p>
       <Link to="/upload" style={{ textDecoration: "none" }}>
-        <div className="startBtn">start ></div>
+        <div className="startBtn">start </div>
       </Link>
+    
+   
     </div>
   );
 }
