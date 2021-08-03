@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import Loading from "../components/Loading";
 import NamePicker from "../components/NamePicker";
 import "../css/result.css";
+import circle from "../images/circle.png";
 import { Button } from "react-bootstrap";
 
 function Result() {
@@ -19,8 +20,18 @@ function Result() {
   });
   const [loading, setLoading] = useState(false);
   const [modalOn, setModalOn] = useState(false);
-   /* API function -- get ring data */
-   const fetchUser = async () => {
+  const [rotation, setRotation] = useState(0);
+  const ringsize = [{name: "KS"},{name: "US"},{name: "IT"},{name: "UK"},];
+  const rotatePic = () => {
+      setRotation(rotation + 90)
+  }
+  const circleStyle = {
+    transform: `rotate(${rotation}deg)` ,
+    transition: "all 1s"
+  }
+
+  /* API function -- get ring data */
+  const fetchUser = async () => {
     try {
       setLoading(true);
       const url = "http://localhost:8000/api/result";
@@ -39,7 +50,13 @@ function Result() {
   const onSubmit = () => {
     const store = getObjectStore(DB_STORE_NAME, "readwrite");
     let req;
-    const obj = {LorR:user.LorR, finger: user.finger, position: user.position, round: user.round, size: user.size};
+    const obj = {
+      LorR: user.LorR,
+      finger: user.finger,
+      position: user.position,
+      round: user.round,
+      size: user.size,
+    };
 
     //위의 데이터 저장처리에서 indexeddb가 비동기이기 때문에 trycatch로 동작확인.
     try {
@@ -60,14 +77,14 @@ function Result() {
   const onModalOn = () => {
     setModalOn(!modalOn);
   };
+
   /* set user data in Modal */
   const onChangeUser = (name, value) => {
     setUser({ ...user, [name]: value });
   };
 
   useEffect(() => {
-   
-    // fetchUser();
+    fetchUser();
   }, []);
 
   const btnStyle = {
@@ -86,6 +103,8 @@ function Result() {
         <div className="text">RING SIZE</div>
 
         <div className="center">
+          <div>{ringsize[(rotation%360)/90].name}</div>
+        <img className="circle" src={circle} style={circleStyle} onClick={rotatePic}/>
           <span>
             round&nbsp;&nbsp;{user.round}
             <p></p>

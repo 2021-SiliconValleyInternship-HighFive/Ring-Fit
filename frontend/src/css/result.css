@@ -5,25 +5,38 @@
     margin-top: 35px;
     font-size: 20px;
 }
-.center {text-align: center; 
+
+.center {
+    position: relative;
+    text-align: center; 
     margin-top: 120px;
     margin-bottom: 80px;
-    
-} 
-
-.center span {width: 270px; 
-    height: 270px; 
-    background-color: #fff; 
-
-    border-radius: 50%; 
-    text-align: center; 
-    line-height: 600%; 
-    display: inline-block; 
-    border: 5px solid black;
-    
     color: rgba(0,0,0,0.7);
     font-family: ariblk;
     font-size: 1.1rem;
+} 
+
+.center span {
+    position:absolute;
+    margin: 0px;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 270px; 
+    height: 270px; 
+
+    text-align: center; 
+    line-height: 600%; 
+    display: inline-block; 
+    /* border: 5px solid black;
+    border-radius: 50%;  */
+    
+
+}
+
+.circle {
+    text-align: center;
+    width:80%;
 }
 
 .modal {
