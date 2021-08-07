@@ -83,7 +83,7 @@ function Result() {
   return (
       
     <div>
-      <div className="result">
+      <div >
         <div className="text">RING SIZE</div>
 
         <div className="center">
@@ -94,6 +94,10 @@ function Result() {
           </span>
         </div>
       </div>
+
+
+
+
       <div style={{ textAlign: "center" }}>
         <Button
           onClick={onModalOn}

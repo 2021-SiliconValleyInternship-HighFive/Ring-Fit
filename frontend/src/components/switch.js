@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Link,Route } from "react-router-dom";
 const Switchs = ({ isOn, handleToggle }) => {
   return (
     <>
+       
     <input
       checked={isOn}
       onChange={handleToggle}
