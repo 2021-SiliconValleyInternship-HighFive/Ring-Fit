@@ -23,7 +23,7 @@ function App() {
                 <route.component />
                 
               
-                <Route  path={["/Guide", "/Measure", "/Result", "/Upload", "/User"]}  exact={true}>
+                <Route  path={["/Guide", "/Measure", "/Result", "/Upload"]}  exact={true}>
                 <Switchs isOn={value} handleToggle={() => setValue(!value)}/>
                 </Route>
               </Route>
