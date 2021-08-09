@@ -21,7 +21,7 @@ function Result() {
   const [loading, setLoading] = useState(false);
   const [modalOn, setModalOn] = useState(false);
   const [rotation, setRotation] = useState(0);
-  const ringsize = [{name: "ringround", size: 50}, {name: "KS", size: 7},{name: "US", size: 5.5},{name: "IT", size: 10},{name: "UK", size: "K"},];
+  const ringsize = [{name: "ringround", size: 56}, {name: "KR", size: 13},{name: "US", size: 7.5},{name: "IT", size: 16},{name: "UK", size: "P"},];
   const rotatePic = () => {
       setRotation(rotation + 90)
   }

@@ -11,9 +11,29 @@
 }
 
 .wrapper .user-maching{
-    min-width: 400px;
+    min-width: 406px;
     height:100px;
     text-align: center;
  
 }
 
+.grid {
+    width: 400px;
+    margin: 0 auto;
+    
+    text-align: center; /*inline-block의 장점은 폰트의 성질도 포함되고 있어서 text-align으로 정렬을 쉽게 할수가 있다.*/
+    font-size: 0; /*양 옆쪽, 밑에 4px정도 여백을 없에주는 방법*/
+}
+
+.grid_item {
+    width: 90px;
+    height: 100px;
+    display: inline-block; /*이부분에 성질을 inline-block로 바꿔줘서 가로배치를 해줬다.*/
+    vertical-align: top; /*밑에 4px 여백을 없에는것*/
+    border: 8px;
+}
+.grid_item.first {  width: 100px;
+    height: 100px; background-image: url(https://media.catchfashion.com/images/h_l?url=https%3A%2F%2Fres.cloudinary.com%2Fssenseweb%2Fimage%2Fupload%2F211439F011081_1.jpg&t=ps);  background-size: contain; background-position: center; background-repeat:no-repeat ;}
+.grid_item.two { border: 8px; background-image: url(https://media.catchfashion.com/images/h_l?url=https%3A%2F%2Fres.cloudinary.com%2Fssenseweb%2Fimage%2Fupload%2F211168F011455_1.jpg&t=ps); background-size: contain; background-position: center; background-repeat:no-repeat ;}
+.grid_item.third {background-image: url(https://media.catchfashion.com/images/h_l?url=https%3A%2F%2Fres.cloudinary.com%2Fssenseweb%2Fimage%2Fupload%2F211451F011011_1.jpg&t=ps);background-size: contain; background-position: center; background-repeat:no-repeat ;}
+.grid_item.thir {background-image: url(https://media.catchfashion.com/images/h_l?url=https%3A%2F%2Fres.cloudinary.com%2Fssenseweb%2Fimage%2Fupload%2F211451F011000_1.jpg&t=ps);background-size: contain; background-position: center; background-repeat:no-repeat ;}

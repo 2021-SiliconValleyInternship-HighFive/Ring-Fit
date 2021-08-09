@@ -101,8 +101,12 @@ function User() {
     <button onClick={() => {onRemove(user.id)}}>DELETE</button> */}
             </div>
             <div className="user-maching">
-                shop
-                
+            <div class="grid">
+        <a href="https://www.catchfashion.com/view/1bca4097-252a-4511-a3c9-377b1976cc74"><div class="grid_item first" ></div></a>
+        <div class="grid_item two"></div>
+        <div class="grid_item third"></div>
+        <div class="grid_item thir"></div>
+</div>
             </div>
           </div>
         );
