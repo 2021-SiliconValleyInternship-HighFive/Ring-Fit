@@ -21,7 +21,7 @@ function Result() {
   const [loading, setLoading] = useState(false);
   const [modalOn, setModalOn] = useState(false);
   const [rotation, setRotation] = useState(0);
-  const ringsize = [{name: "KS"},{name: "US"},{name: "IT"},{name: "UK"},];
+  const ringsize = [{name: "ringround", size: 50}, {name: "KS", size: 7},{name: "US", size: 5.5},{name: "IT", size: 10},{name: "UK", size: "K"},];
   const rotatePic = () => {
       setRotation(rotation + 90)
   }
@@ -103,12 +103,12 @@ function Result() {
         <div className="text">RING SIZE</div>
 
         <div className="center">
-          <div>{ringsize[(rotation%360)/90].name}</div>
+          <div>{ringsize[(rotation%360)/90 + 1].name}</div>
         <img className="circle" src={circle} style={circleStyle} onClick={rotatePic}/>
           <span>
-            round&nbsp;&nbsp;{user.round}
+            round&nbsp;&nbsp;{ringsize[0].size}
             <p></p>
-            size&nbsp;&nbsp;{user.size}
+            size&nbsp;&nbsp;{ringsize[(rotation%360)/90 + 1].size}
           </span>
         </div>
       </div>
