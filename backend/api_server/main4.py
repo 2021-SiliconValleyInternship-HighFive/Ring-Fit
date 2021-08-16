@@ -1,19 +1,25 @@
 '''pymongo'''
-from fastapi import FastAPI
+from fastapi import FastAPI, Path, HTTPException
 from pymongo import MongoClient
+from pydantic import BaseModel, Field
+from typing import List
 
-client = MongoClient("mongodb+srv://ringfit:<password>@cluster0.xhct5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
-# client = MongoClient()
+client = MongoClient("mongodb+srv://ringfit:<pw>@cluster0.xhct5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
 
 db = client["ringfit"]
 collection = db["size"]
 
 app = FastAPI()
 
-size_chart = {
-    "circum": 51,
-    "size": ["8", "4 1/2", "I", "8"]
-}
 
-result = collection.insert_one(size_chart)
-print("successfully added", result.inserted_id)
+""" 
+get size chart by circumference
+[0]: KR, [1]: US, [2]: UK, [3]: IT
+"""
+
+@app.get(
+    "/api/size/{circum}", tags=["Size"], status_code=200, response_description="size chart successfully retrieved", response_model=Size
+)
+async def get_size_chart(circum: int = Path(..., gte=44, lte=73)):
+    size_chart = collection.find_one({"circum": circum})
+    return size_chart
