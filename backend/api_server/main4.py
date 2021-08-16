@@ -11,6 +11,10 @@ collection = db["size"]
 
 app = FastAPI()
 
+class Size(BaseModel):
+    circum: int = Field(..., gte=44, lte=73)
+    size: List[str]
+
 
 """ 
 get size chart by circumference
