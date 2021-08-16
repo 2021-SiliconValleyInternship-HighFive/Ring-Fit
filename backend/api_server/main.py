@@ -1,14 +1,19 @@
-from fastapi import FastAPI, File, UploadFile, Form
+from fastapi import FastAPI, File, UploadFile, Form, Path, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-# from starlette.middleware import Middleware
-# from starlette.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pymongo import MongoClient
+from pydantic import BaseModel, Field
+from typing import List
 
 # from fastapi.testclient import TestClient
 # from fastapi.responses import HTMLResponse
 
 # import requests
 # import json
+
+client = MongoClient("mongodb+srv://<user>:<pw>@cluster0.xhct5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+
+db = client["ringfit"]
+collection = db["size"]
 
 # FastAPI CORSMiddleware 
 app = FastAPI()
@@ -30,19 +35,18 @@ app.add_middleware(
 )
 
 
+
 '''
 APIs
 '''
 
-
 class Size(BaseModel):
-    circumference: int
-    size: int
+    circum: int = Field(..., gte=44, lte=73)
+    size: List[str]
 
 
 
 # 데이터 전송 API
-# content-type: multipart/form-data
 @app.post('/api/data', status_code=201, tags=["User"])
 async def send_data(
     x: int = Form(...), 
@@ -64,5 +68,15 @@ async def return_result():
 
 
 
+""" 
+get size chart by circumference
+[0]: KR, [1]: US, [2]: UK, [3]: IT
+"""
 
+@app.get(
+    "/api/size/{circum}", tags=["Size"], status_code=200, response_description="size chart successfully retrieved", response_model=Size
+)
+async def get_size_chart(circum: int = Path(..., gte=44, lte=73)):
+    size_chart = collection.find_one({"circum": circum})
+    return size_chart
 
