@@ -110,6 +110,7 @@ async def create_user_data(
     image_for_prediction = np.expand_dims(image_for_prediction, 0)
     image_for_prediction = image_for_prediction / 127.5 - 1
 
+
     # Load the model.
     interpreter = tf.lite.Interpreter(model_path=tflite_path)
 
@@ -330,8 +331,8 @@ async def create_user_data(
     hand_arr=vis_segmentation(im, seg_map)
 
     # xy 좌표
-    front_x=x_client #행렬의 행(가로)
-    front_y=y_client #행렬의 열(세로)
+    front_x=y_client #행렬의 행(가로)
+    front_y=x_client #행렬의 열(세로)
 
     len_max=513 #손가락 최대 넓이 지정
 
