@@ -42,9 +42,15 @@ function Measure() {
       },
     };
     const data = new FormData(); // formData 생성
-    data.append("x", x);
-    data.append("y", y);
-    data.append("file", image);
+    /*변경 후*/
+    data.append("x_client", x);
+    data.append("y_client", y);
+    data.append("image_client", image);
+
+    /*변경 전*/
+    //data.append("x", x);
+    //data.append("y", y);
+    //data.append("file", image);
     for (var pair of data.entries()) {
       // 확인용
       console.log(pair[0] + ", " + pair[1]);
