@@ -81,6 +81,12 @@ async def create_user_data(
     image_client: UploadFile = File(...)
 ):  
     
+    image_path = os.getcwd() + '\\static\\' + image_client.filename
+    with open(image_path, 'wb') as buffer:
+        shutil.copyfileobj(image_client.file, buffer)
+    
+    if os.path.isfile(image_path):
+        image_dir = image_client.filename
     # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     # IMG_DIR = os.path.join(BASE_DIR, 'static/')
     # SERVER_IMG_DIR = os.path.join('http://localhost:8000/', 'static')
@@ -94,9 +100,11 @@ async def create_user_data(
     #     server_path = os.path.join(SERVER_IMG_DIR, 'images/', image_client.filename)
 
 
+    '''
     ###
     global image_input
     image_input = image_client.file
+    '''
 
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
@@ -116,7 +124,8 @@ async def create_user_data(
 
     # 받은 이미지 경로
     # testimg_dir='coin_hand.JPG'
-    testimg_dir=image_input
+    # testimg_dir=image_input
+    testimg_dir=image_path
     
     im = Image.open(testimg_dir)
     # im = im.resize((513, 513))
