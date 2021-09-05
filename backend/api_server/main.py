@@ -62,17 +62,6 @@ class Size(BaseModel):
 
 
 
-'''
-@app.post('/api/user', status_code=201, tags=["User"], response_description="user data successfully created")
-async def create_user_data(
-    x: int = Form(...), y: int = Form(...), file: UploadFile = File(...)
-):
-    return {
-        "x": x,
-        "y": y,
-        "filename" : file.filename
-    }
-'''
 
 @app.post("/api/users", status_code=201, tags=["User"], response_description="user data successfully created")
 async def create_user_data(
@@ -87,24 +76,7 @@ async def create_user_data(
     
     if os.path.isfile(image_path):
         image_dir = image_client.filename
-    # BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    # IMG_DIR = os.path.join(BASE_DIR, 'static/')
-    # SERVER_IMG_DIR = os.path.join('http://localhost:8000/', 'static')
 
-    # server_path = ''
-
-    # # if image_client != None:
-    #     local_path = os.path.join(IMG_DIR, 'images/', image_client.filename)
-    #     with open(local_path, 'wb') as buffer:
-    #         shutil.copyfileobj(image_client.file, buffer)
-    #     server_path = os.path.join(SERVER_IMG_DIR, 'images/', image_client.filename)
-
-
-    '''
-    ###
-    global image_input
-    image_input = image_client.file
-    '''
 
     os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
@@ -461,17 +433,6 @@ async def create_user_data(
 
 
 
-'''
-"""
-return user size by id
-"""
-
-@app.get('/api/user/{id}', status_code=200, tags=["User"], response_description="result successfully retrieved")
-async def return_user_size():
-    return 
-'''
-
-
 """ 
 get internationl ring size by circumference
 [0]: KR, [1]: US, [2]: UK, [3]: IT
@@ -484,32 +445,3 @@ async def get_size_chart(circum: int = Path(..., gte=44, lte=73)):
     size_chart = collection.find_one({"circum": circum})
     return size_chart
 
-
-##
-#@app.post("/files/")
-#async def create_files(files: List[bytes] = File(...)):
-#    return {"file_sizes": [len(file) for file in files]}
-
-
-# @app.post("/api/image")
-# async def upload_image(image: UploadFile = File(...)):
-#     UPLOAD_DIRECTORY = ".\Ring-Fit\\backend\\api_server\images"
-#     uploaded_image = await image.read()
-#     with open(os.path.join(UPLOAD_DIRECTORY, image.filename), "wb") as fp:
-#         fp.write(uploaded_image)
-#     print(image.filename)
-#     return {"image": image.filename}
-
-
-
-'''
-@app.post("/uploadfiles")
-async def create_upload_files(files: List[UploadFile] = File(...)):
-    UPLOAD_DIRECTORY = "./"
-    for file in files:
-        contents = await file.read()
-        with open(os.path.join(UPLOAD_DIRECTORY, file.filename), "wb") as fp:
-            fp.write(contents)
-        print(file.filename)
-    return {"filenames": [file.filename for file in files]}
-'''
