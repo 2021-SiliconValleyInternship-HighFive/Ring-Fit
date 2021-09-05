@@ -76,8 +76,8 @@ async def create_user_data(
 
 @app.post("/api/users", status_code=201, tags=["User"], response_description="user data successfully created")
 async def create_user_data(
-    x: int = Form(...),
-    y: int = Form(...),
+    x_client: int = Form(...),
+    y_client: int = Form(...),
     image_client: UploadFile = File(...)
 ):  
     
@@ -349,8 +349,8 @@ async def create_user_data(
     hand_arr=vis_segmentation(im, seg_map)
 
     # xy 좌표
-    front_x=x #행렬의 행(가로)
-    front_y=y #행렬의 열(세로)
+    front_x=x_client #행렬의 행(가로)
+    front_y=y_client #행렬의 열(세로)
 
     len_max=513 #손가락 최대 넓이 지정
 
