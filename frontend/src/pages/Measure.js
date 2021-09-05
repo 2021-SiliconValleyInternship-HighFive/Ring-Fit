@@ -35,7 +35,7 @@ function Measure() {
   const handlePost = async () => {
     const x = trans(coord.x);
     const y = trans(coord.y);
-    const url = "http://localhost:8000/api/data";
+    const url = "http://localhost:8000/api/users";
     const config = {
       headers: {
         "content-type": "multipart/form-data",
