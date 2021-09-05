@@ -7,7 +7,7 @@
 
 <br>
 
-**URL** : `/api/data`
+**URL** : `/api/users`
 
 **Method** : `POST`
 
