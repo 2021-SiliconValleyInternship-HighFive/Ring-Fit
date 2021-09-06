@@ -414,12 +414,30 @@ async def create_user_data(
     ### not in list error_ test
     print("손가락 둘레:", finger_round)
 
+    '''
     a=[]
 
     for size in range(38,74):
         a.append(size)
 
     ring_size=a.index(finger_round)+1
+    '''
+
+
+    # 반지 호수
+    # ring_size=finger_round-43
+
+    a=[]
+    b=[]
+
+    for size in range(1, 31):
+        a.append(size)
+    
+    for cir in range(44, 74):
+        b.append(cir)
+    
+    ring_size = a[b.index(finger_round)]
+
 
     print("ring size:", ring_size)
     print("circum:", finger_round)
@@ -428,7 +446,6 @@ async def create_user_data(
         "circumference" : finger_round,
         "size" : ring_size
     }
-
 
 
 
