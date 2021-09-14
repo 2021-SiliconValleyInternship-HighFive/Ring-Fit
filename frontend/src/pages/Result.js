@@ -67,7 +67,7 @@ function Result() {
 
   useEffect(() => {
    
-    // fetchUser();
+     fetchUser();
   }, []);
 
   const btnStyle = {

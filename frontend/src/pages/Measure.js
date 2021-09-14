@@ -52,7 +52,7 @@ function Measure() {
     //data.append("y", y);
     //data.append("file", image);
     for (var pair of data.entries()) {
-      // 확인용
+      //폼데이터 확인용
       console.log(pair[0] + ", " + pair[1]);
     }
     await axios
@@ -62,7 +62,7 @@ function Measure() {
       })
       .catch((err) => {
         console.log(err);
-        history.push("/result"); // 테스트용 - api 연동 실패해도 페이지 넘어가도록
+        //history.push("/result");     // 테스트용 - api 연동 실패해도 페이지 넘어가도록
       });
   };
 
